@@ -5,9 +5,9 @@ import keyboard
 from control.drone_control import Drone
 
 # ===== CONFIG =====
-TARGET_HEIGHT = 150
+TARGET_HEIGHT = 180
 TOLERANCE = 10
-MAX_HEIGHT = 180
+MAX_HEIGHT = 200
 
 MIN_DIST = 200
 MAX_DIST = 250
