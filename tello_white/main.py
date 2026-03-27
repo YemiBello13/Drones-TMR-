@@ -5,47 +5,44 @@ import keyboard
 from control.drone_control import Drone
 
 # ===== CONFIG =====
-TARGET_HEIGHT = 180
-TOLERANCE = 5
-MAX_HEIGHT = 200
-
-MIN_DIST = 100
-MAX_DIST = 120
-
-DIST_FACTOR = 2.181
-MARKER_SIZE = 0.20
+TARGET_HEIGHT = 200
+MAX_HEIGHT    = 205
+TOLERANCE     = 10
+DIST_FACTOR   = 2.181
+MARKER_SIZE   = 0.20
+TARGET_DIST   = 100
 
 # ===== INIT =====
 drone = Drone()
 drone.connect()
-
 tello = drone.tello
 frame_read = tello.get_frame_read()
 
 aruco_dict = cv2.aruco.getPredefinedDictionary(cv2.aruco.DICT_5X5_250)
 parameters = cv2.aruco.DetectorParameters()
-detector = cv2.aruco.ArucoDetector(aruco_dict, parameters)
+detector   = cv2.aruco.ArucoDetector(aruco_dict, parameters)
 
-# Cámara
 frame = frame_read.frame
-h, w = frame.shape[:2]
-
-focal_length = w
+h, w  = frame.shape[:2]
+focal_length  = w
 camera_matrix = np.array([
     [focal_length, 0, w / 2],
     [0, focal_length, h / 2],
     [0, 0, 1]
 ])
-
 dist_coeffs = np.zeros((4, 1))
-
-half_size = MARKER_SIZE / 2
-obj_points = np.array([
+half_size   = MARKER_SIZE / 2
+obj_points  = np.array([
     [-half_size,  half_size, 0],
     [ half_size,  half_size, 0],
     [ half_size, -half_size, 0],
     [-half_size, -half_size, 0]
 ], dtype=np.float32)
+
+# ===== MEMORIA DE ÚLTIMO ARUCO VISTO =====
+# Guarda hacia dónde se fue el marcador la última vez
+last_err_x = 0   # positivo = se fue a la derecha
+last_err_y = 0   # positivo = se fue abajo
 
 # ===== TAKEOFF =====
 print("Despegando")
@@ -56,35 +53,29 @@ time.sleep(2)
 while True:
     height = tello.get_height()
     print(f"Altura: {height}")
-
     if keyboard.is_pressed('q'):
         drone.land()
         exit()
-
     if height > MAX_HEIGHT:
         drone.send_control(0, 0, -20, 0)
         continue
-
     if height < TARGET_HEIGHT - TOLERANCE:
         drone.send_control(0, 0, 25, 0)
     else:
         drone.send_control(0, 0, 0, 0)
         break
-
     time.sleep(0.1)
 
 print("Altura alcanzada, iniciando visión...")
 
-# ===== LOOP =====
+# ===== LOOP PRINCIPAL =====
 while True:
-
     frame = frame_read.frame
     if frame is None:
         continue
 
     display = frame.copy()
-    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-
+    gray    = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     corners, ids, _ = detector.detectMarkers(gray)
 
     if keyboard.is_pressed('q'):
@@ -101,76 +92,68 @@ while True:
         continue
 
     if ids is not None:
-
         for corner in corners:
-
             img_points = corner[0].astype(np.float32)
-
             success, rvec, tvec = cv2.solvePnP(
-                obj_points,
-                img_points,
-                camera_matrix,
-                dist_coeffs
+                obj_points, img_points, camera_matrix, dist_coeffs
             )
-
             if success:
                 distance = tvec[2][0] * 100 * DIST_FACTOR
 
-                # Centro
                 cx = int(img_points[:, 0].mean())
                 cy = int(img_points[:, 1].mean())
 
-                # Dibujo
-                cv2.polylines(display, [img_points.astype(int)], True, (0,255,0), 2)
-                cv2.circle(display, (cx, cy), 5, (0,0,255), -1)
+                # Actualizar memoria
+                last_err_x = cx - w // 2
+                last_err_y = cy - h // 2
 
+                # Dibujos
+                cv2.polylines(display, [img_points.astype(int)], True, (0, 255, 0), 2)
+                cv2.circle(display, (cx, cy), 5, (0, 0, 255), -1)
                 cv2.putText(display, f"{distance:.1f} cm",
                             (cx - 40, cy - 30),
                             cv2.FONT_HERSHEY_SIMPLEX,
-                            0.6,
-                            (0,255,0), 2)
-
+                            0.6, (0, 255, 0), 2)
                 print(f"Distancia: {distance:.2f} cm")
 
-                # Control
-                frame_cx = w // 2
-                frame_cy = h // 2
-                err_x = cx - frame_cx
-                err_y = cy - frame_cy
+                # ===== CONTROL COMBINADO =====
+                Kp_yaw = 0.15
+                Kp_ud  = 0.15
+                Kp_fb  = 0.25
 
-                CENTER_TOL = 40
-                Kp_yaw = 0.2
-                Kp_ud  = 0.2
+                yaw = int(np.clip(Kp_yaw * last_err_x, -25, 25))
+                ud  = int(np.clip(-Kp_ud * last_err_y, -20, 20))
+                fb  = int(np.clip(Kp_fb * (distance - TARGET_DIST), -20, 20))
 
-                yaw = int(np.clip(Kp_yaw * err_x, -30, 30))
-                ud  = int(np.clip(-Kp_ud * err_y, -20, 20))
-
-                # Primero centrar, luego avanzar
-                if abs(err_x) > CENTER_TOL or abs(err_y) > CENTER_TOL:
-                    drone.send_control(0, 0, ud, yaw)
-                elif distance > MAX_DIST:
-                    drone.send_control(0, 20, 0, 0)
-                elif distance < MIN_DIST:
-                    drone.send_control(0, -20, 0, 0)
-                else:
-                    drone.send_control(0, 0, 0, 0)
-                    print("Distancia correcta")
-                    time.sleep(2)
+                if abs(distance - TARGET_DIST) < 20:
+                    print("Distancia alcanzada, aterrizando...")
+                    for _ in range(10):
+                        drone.send_control(0, 0, -10, 0)
+                        time.sleep(0.3)
                     drone.land()
                     exit()
+                else:
+                    drone.send_control(0, fb, ud, yaw)
 
     else:
-        cv2.putText(display, "NO ARUCO",
-                    (20, 40),
-                    cv2.FONT_HERSHEY_SIMPLEX,
-                    0.8,
-                    (0,0,255), 2)
+        # ===== BÚSQUEDA DIRIGIDA =====
+        # Usa la última posición conocida para ir hacia donde se fue
+        SEARCH_YAW = 15
+        SEARCH_UD  = 12
 
-        drone.send_control(0, 0, 0, 20)
+        yaw_recovery = SEARCH_YAW if last_err_x > 0 else -SEARCH_YAW
+        ud_recovery  = SEARCH_UD  if last_err_y > 0 else -SEARCH_UD
 
-    # stream
+        # Si se pierde de frente gira lentamente
+        if abs(last_err_x) < 30:
+            yaw_recovery = 10
+
+        cv2.putText(display, f"NO ARUCO | buscando {'der' if last_err_x > 0 else 'izq'} {'abajo' if last_err_y > 0 else 'arriba'}",
+                    (20, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
+
+        drone.send_control(0, 0, ud_recovery, yaw_recovery)
+
     cv2.imshow("Tello Vision", display)
-
     if cv2.waitKey(1) & 0xFF == ord('q'):
         drone.land()
         break
