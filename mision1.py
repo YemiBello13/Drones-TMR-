@@ -4,68 +4,48 @@ from djitellopy import Tello
 import time
 
 # ===== CONFIGURACIÓN DE MISIÓN =====
-# Alturas de los centros de las ventanas según las reglas
-ALTURA_AZUL  = 125  # Ventana 1.5m, base 0.5m -> Centro 1.25m
-ALTURA_VERDE = 150  # Ventana 1.0m, base 1.0m -> Centro 1.50m
-ALTURA_ROJO  = 175  # Ventana 0.5m, base 1.5m -> Centro 1.75m
+ALTURA_ROJO  = 175  # Centro de la ventana pequeña (1.5m base + 0.25m ventana)
+EMERGENCY_CEIL = 200 # Altura máxima de seguridad (3 metros)
+TOLERANCIA_ALT = 5   # Tolerancia de altura en cm
+TOLERANCIA_X   = 20  # Tolerancia de centrado horizontal en píxeles
 
-EMERGENCY_CEIL = 380 # Regla 13: 4 metros
-TOLERANCIA_ALT = 10
+# ===== RANGOS HSV PARA ROJO (Ajustado para mayor sensibilidad) =====
+rojo_bajo1 = np.array([0, 100, 100]);  rojo_alto1 = np.array([10, 255, 255])
+rojo_bajo2 = np.array([160, 100, 100]); rojo_alto2 = np.array([180, 255, 255])
 
-# ===== RANGOS HSV (Corregidos para tus fotos) =====
-azul_bajo = np.array([90, 45, 45]);   azul_alto = np.array([130, 255, 255])
-verde_bajo = np.array([35, 40, 40]);  verde_alto = np.array([90, 255, 255])
-# Rojo usa dos rangos por el círculo de color HSV
-rojo_bajo1 = np.array([0, 70, 50]);   rojo_alto1 = np.array([15, 255, 255])
-rojo_bajo2 = np.array([160, 70, 50]); rojo_alto2 = np.array([180, 255, 255])
-
-def detectar_color(frame):
+def obtener_centro_color(frame):
+    """Devuelve las coordenadas (x, y) del centro de la masa roja más grande."""
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-    mask_azul = cv2.inRange(hsv, azul_bajo, azul_alto)
-    mask_verde = cv2.inRange(hsv, verde_bajo, verde_alto)
-    mask_rojo = cv2.add(cv2.inRange(hsv, rojo_bajo1, rojo_alto1), 
-                        cv2.inRange(hsv, rojo_bajo2, rojo_alto2))
+    mask = cv2.add(cv2.inRange(hsv, rojo_bajo1, rojo_alto1), 
+                    cv2.inRange(hsv, rojo_bajo2, rojo_alto2))
+    
+    # Limpiar ruido
+    mask = cv2.erode(mask, None, iterations=2)
+    mask = cv2.dilate(mask, None, iterations=2)
+    
+    contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    
+    if contours:
+        c = max(contours, key=cv2.contourArea)
+        if cv2.contourArea(c) > 5000: # Solo si el objeto es suficientemente grande
+            M = cv2.moments(c)
+            if M["m00"] != 0:
+                cx = int(M["m10"] / M["m00"])
+                cy = int(M["m01"] / M["m00"])
+                return (cx, cy), mask
+    return None, mask
 
-    pixels = {
-        "AZUL": cv2.countNonZero(mask_azul),
-        "VERDE": cv2.countNonZero(mask_verde),
-        "ROJO": cv2.countNonZero(mask_rojo)
-    }
-    max_c = max(pixels, key=pixels.get)
-    if pixels[max_c] > 12000: return max_c
-    return None
-
-# ===== INICIALIZACIÓN ROBUSTA =====
 tello = Tello()
-
-def conectar_dron():
-    intentos = 0
-    while intentos < 3:
-        try:
-            tello.connect()
-            # Forzamos una consulta para asegurar que el socket de estado responda
-            print(f"Conectado! Batería: {tello.get_battery()}%")
-            return True
-        except Exception as e:
-            print(f"Intento {intentos+1} fallido: {e}. Reintentando...")
-            intentos += 1
-            time.sleep(2)
-    return False
-
-if not conectar_dron():
-    print("No se pudo establecer comunicación con el Tello. Revisa el WiFi.")
-    exit()
-
+tello.connect()
+print(f"Batería: {tello.get_battery()}%")
 tello.streamon()
 frame_read = tello.get_frame_read()
 
-# ===== LÓGICA DE FASES (Como el código de tu compañero) =====
-# Fase 1: Despegue | Fase 2: Buscar Color | Fase 3: Ajustar Altura | Fase 4: Cruzar | Fase 5: Land
-fase = 1
-color_detectado = None
+fase = 1 # 1:Takeoff, 2:Buscar/Subir, 3:Centrar, 4:Cruzar, 5:Land
+centro_pantalla_x = 480 # La resolución del Tello es 960x720
 
 try:
-    print("FASE 1: Despegando...")
+    print("FASE 1: Despegue")
     tello.takeoff()
     time.sleep(2)
     fase = 2
@@ -74,71 +54,66 @@ try:
         img = frame_read.frame
         if img is None: continue
         
-        # Seguridad: Paro de Emergencia (Regla 15)
+        # Seguridad Manual (Espacio para emergencia, Q para aterrizar)
         key = cv2.waitKey(1) & 0xFF
-        if key == ord(' '): # Espacio
-            tello.emergency()
-            break
-        if key == ord('q'):
-            break
+        if key == ord(' '): tello.emergency(); break
+        if key == ord('q'): tello.land(); break
 
         height = tello.get_height()
+        pos_rojo, mascara = obtener_centro_color(img)
 
-        # Fase 2: Buscar color de túnel
+        # FASE 2: Alcanzar altura objetivo
         if fase == 2:
-            color_detectado = detectar_color(img)
-            if color_detectado:
-                print(f"FASE 3: Túnel {color_detectado} detectado. Ajustando altura...")
-                fase = 3
+            if height < ALTURA_ROJO - TOLERANCIA_ALT:
+                tello.send_rc_control(0, 0, 30, 0) # Subir
+            elif height > ALTURA_ROJO + TOLERANCIA_ALT:
+                tello.send_rc_control(0, 0, -20, 0) # Bajar
             else:
-                # Si no ve nada, rotar suavemente para buscar
-                tello.send_rc_control(0, 0, 0, 20) 
-
-        # Fase 3: Ajuste de altura específico según el color
-        elif fase == 3:
-            target = 0
-            if color_detectado == "AZUL":  target = ALTURA_AZUL
-            if color_detectado == "VERDE": target = ALTURA_VERDE
-            if color_detectado == "ROJO":  target = ALTURA_ROJO
-
-            # Lógica de subida/bajada precisa
-            if height < target - TOLERANCIA_ALT:
-                tello.send_rc_control(0, 0, 20, 0)
-            elif height > target + TOLERANCIA_ALT:
-                tello.send_rc_control(0, 0, -20, 0)
-            else:
-                print("Altura correcta. FASE 4: Cruzando túnel...")
                 tello.send_rc_control(0, 0, 0, 0)
-                fase = 4
+                print("FASE 3: Centrando dron con el túnel rojo...")
+                fase = 3
 
-        # Fase 4: Avance a través del túnel (2 metros)
+        # FASE 3: Centrado Horizontal (Visual Servoing)
+        # Esto es vital para el túnel de 0.5m
+        elif fase == 3:
+            if pos_rojo:
+                cx, cy = pos_rojo
+                error_x = cx - centro_pantalla_x
+                
+                if abs(error_x) > TOLERANCIA_X:
+                    velocidad_lat = 15 if error_x > 0 else -15
+                    tello.send_rc_control(velocidad_lat, 0, 0, 0)
+                else:
+                    tello.send_rc_control(0, 0, 0, 0)
+                    print("Centrado listo. FASE 4: Cruzando...")
+                    fase = 4
+            else:
+                # Si pierde el color, rotar un poco para buscarlo
+                tello.send_rc_control(0, 0, 0, 15)
+
+        # FASE 4: Avance de precisión
         elif fase == 4:
-            # Avanzamos 3 metros para asegurar salida
-            tello.move_forward(300)
-            print("Túnel cruzado. FASE 5: Aterrizando...")
+            # Los 5 aros forman un túnel de 2m. Avanzamos 2.5m para salir limpio.
+            tello.move_forward(250)
             fase = 5
 
-        # Fase 5: Aterrizaje suave
+        # FASE 5: Aterrizaje
         elif fase == 5:
-            while tello.get_height() > 40:
-                tello.send_rc_control(0, 0, -20, 0)
-                time.sleep(0.2)
+            print("Misión terminada exitosamente.")
             tello.land()
             break
 
-        # Dibujar info en pantalla
-        cv2.putText(img, f"Fase: {fase} | Alt: {height}cm", (20, 50), 
-                    cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
-        if color_detectado:
-            cv2.putText(img, f"Tunel: {color_detectado}", (20, 90), 
-                        cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 255), 2)
+        # Dibujar UI para telemetría
+        cv2.circle(img, (centro_pantalla_x, 360), 10, (255, 255, 255), 2)
+        if pos_rojo:
+            cv2.circle(img, pos_rojo[0], 10, (0, 0, 255), -1)
         
-        cv2.imshow("Mision 1 - Tello", img)
+        cv2.putText(img, f"Fase: {fase} | Alt: {height}cm", (20, 50), 2, 0.8, (0, 255, 0), 2)
+        cv2.imshow("TMR - MISION 1 ROJO", img)
 
 except Exception as e:
-    print(f"Error en vuelo: {e}")
+    print(f"Error: {e}")
     tello.land()
-
 finally:
     tello.streamoff()
     cv2.destroyAllWindows()
