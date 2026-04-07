@@ -9,26 +9,35 @@ from control.drone_control import Drone
 TARGET_HEIGHT  = 190
 MAX_HEIGHT     = 200
 TOLERANCE      = 8
-DIST_FACTOR    = 2.181
+DIST_FACTOR    = 1.0
 MARKER_SIZE    = 0.20
-TARGET_DIST    = 120
+TARGET_DIST    = 150
 
-TOL_X_PX  = 40   # tolerancia lateral en píxeles para considerar centrado
-TOL_ANG   = 6.0  # tolerancia angular en grados
-MAX_INTENTOS_CENTRADO = 4  # máximo de vueltas del bucle de centrado
+TOL_X_CM  = 5
+TOL_Y_PX  = 60
 
 # ===== INIT =====
 drone = Drone()
 drone.connect()
 tello = drone.tello
+
+tello.streamon()
+time.sleep(2)
 frame_read = tello.get_frame_read()
+time.sleep(1)
 
 aruco_dict = cv2.aruco.getPredefinedDictionary(cv2.aruco.DICT_5X5_250)
 parameters = cv2.aruco.DetectorParameters()
 detector   = cv2.aruco.ArucoDetector(aruco_dict, parameters)
 
-frame = frame_read.frame
+while True:
+    frame = frame_read.frame
+    if frame is not None:
+        break
+    time.sleep(0.1)
+
 h, w  = frame.shape[:2]
+print(f"Resolución: {w}x{h}")
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
 video_path = os.path.join(script_dir, f"vuelo_{int(time.time())}.mp4")
@@ -51,27 +60,13 @@ obj_points    = np.array([
 ], dtype=np.float32)
 
 # ===== ESTADO =====
-last_err_x   = 0
-last_err_y   = 0
-last_lado    = 0   # último lado conocido: +1 derecha, -1 izquierda, 0 desconocido
-
-# Fases principales:
-# 1 = acercarse
-# 2 = estabilizar antes de medir
-# 3 = medir (acumular)
-# 4 = corregir lateral (lr)
-# 5 = corregir angular (yaw)
-# 6 = verificar — si ok → 7, si no → volver a 2
-# 7 = retroceder
-# 8 = aterrizar
-fase           = 1
-intento        = 0   # contador de intentos del bucle de centrado
-
-medidas_x      = []
-medidas_y      = []
-medidas_ang    = []
-medidas_lat    = []
-
+last_err_x  = 0
+last_err_y  = 0
+fase        = 1
+medidas_x   = []
+medidas_y   = []
+medidas_ang = []
+medidas_lat = []
 avg_x = avg_y = avg_ang = avg_lat = 0.0
 
 _ultimo_print = 0.0
@@ -86,15 +81,19 @@ def print_throttle(msg):
 # ===== HELPERS =====
 
 def cleanup():
-    try: out.release()
-    except: pass
+    try:
+        out.release()
+    except:
+        pass
     cv2.destroyAllWindows()
-    try: tello.streamoff()
-    except: pass
+    try:
+        tello.streamoff()
+    except:
+        pass
 
 def check_q():
     if keyboard.is_pressed('q'):
-        print("Q — aterrizando")
+        print("Q presionada — aterrizando")
         drone.send_control(0, 0, 0, 0)
         time.sleep(0.2)
         drone.land()
@@ -117,79 +116,32 @@ def sleep_con_altura(segundos, paso=0.1):
         time.sleep(paso)
 
 def mover_con_altura(lr, fb, yaw, segundos, paso=0.1):
-    """Ejecuta movimiento manteniendo altura y respondiendo a q."""
-    dur = min(segundos, 5.0)   # límite de seguridad: nunca más de 5 s de un tirón
-    t0  = time.time()
-    while time.time() - t0 < dur:
+    t0 = time.time()
+    while time.time() - t0 < segundos:
         check_q()
         drone.send_control(lr, fb, ud_seguro(), yaw)
         time.sleep(paso)
     drone.send_control(0, 0, 0, 0)
     sleep_con_altura(0.5)
 
-def medir_frames(n=20):
-    """
-    Acumula n frames válidos con el marcador visible.
-    Devuelve (med_err_x, med_err_y, med_ang, med_lat) usando mediana,
-    o None si no se consiguieron suficientes lecturas en el tiempo límite.
-    """
-    xs, ys, angs, lats = [], [], [], []
-    t_limite = time.time() + 8.0   # máximo 8 s para acumular
-    while len(xs) < n:
-        check_q()
-        if time.time() > t_limite:
-            print("Tiempo límite de medición agotado")
-            return None
-
-        frm = frame_read.frame
-        if frm is None:
-            time.sleep(0.05)
-            continue
-
-        gris = cv2.cvtColor(frm, cv2.COLOR_BGR2GRAY)
-        crns, iids, _ = detector.detectMarkers(gris)
-
-        if iids is None or len(crns) == 0:
-            time.sleep(0.05)
-            continue
-
-        ipts = crns[0][0].astype(np.float32)
-        ok, rvec, tvec = cv2.solvePnP(obj_points, ipts, camera_matrix, dist_coeffs)
-        if not ok:
-            time.sleep(0.05)
-            continue
-
-        dist = tvec[2][0] * 100 * DIST_FACTOR
-        lat  = float(tvec[0][0] * 100)
-
-        # Filtro básico de outliers
-        if dist < 20 or dist > 800 or abs(lat) > 300:
-            continue
-
-        cx  = int(ipts[:, 0].mean())
-        cy  = int(ipts[:, 1].mean())
-        ex  = cx - w // 2
-        ey  = cy - h // 2
-
-        rmat, _ = cv2.Rodrigues(rvec)
-        ang     = np.degrees(np.arctan2(rmat[0][2], rmat[2][2]))
-
-        # Filtro coherencia respecto a lo acumulado
-        if len(xs) > 0 and abs(ex - np.median(xs)) > 150:
-            continue
-
-        xs.append(ex)
-        ys.append(ey)
-        angs.append(ang)
-        lats.append(lat)
-
-        drone.send_control(0, 0, ud_seguro(), 0)
-        time.sleep(0.05)
-
-    return (float(np.median(xs)),
-            float(np.median(ys)),
-            float(np.median(angs)),
-            float(np.median(lats)))
+def dibujar_flecha(display, direccion, color=(0, 200, 255)):
+    cx, cy = w // 2, h // 2
+    tam    = 80
+    grosor = 6
+    if '←' in direccion:
+        cv2.arrowedLine(display, (cx + tam, cy), (cx - tam, cy), color, grosor, tipLength=0.4)
+    if '→' in direccion:
+        cv2.arrowedLine(display, (cx - tam, cy), (cx + tam, cy), color, grosor, tipLength=0.4)
+    if '↑' in direccion:
+        cv2.arrowedLine(display, (cx, cy + tam), (cx, cy - tam), color, grosor, tipLength=0.4)
+    if '↓' in direccion:
+        cv2.arrowedLine(display, (cx, cy - tam), (cx, cy + tam), color, grosor, tipLength=0.4)
+    if '↻' in direccion:
+        cv2.putText(display, "GIRAR DER >>", (cx - 100, cy + 120),
+                    cv2.FONT_HERSHEY_SIMPLEX, 1.0, color, 3)
+    if '↺' in direccion:
+        cv2.putText(display, "<< GIRAR IZQ", (cx - 100, cy + 120),
+                    cv2.FONT_HERSHEY_SIMPLEX, 1.0, color, 3)
 
 
 # ===== TAKEOFF =====
@@ -214,6 +166,8 @@ while True:
     time.sleep(0.1)
 
 print("Altura alcanzada, iniciando visión...")
+cv2.namedWindow("Tello Vision", cv2.WINDOW_NORMAL)
+cv2.resizeWindow("Tello Vision", 960, 720)
 
 # ===== LOOP PRINCIPAL =====
 while True:
@@ -227,7 +181,7 @@ while True:
     gray    = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     corners, ids, _ = detector.detectMarkers(gray)
 
-    # ── Seguro de altura siempre primero ────────────────────────────────
+    # ── Techo de emergencia ──────────────────────────────────────────────
     height = tello.get_height()
     if height >= MAX_HEIGHT:
         drone.send_control(0, 0, -20, 0)
@@ -241,207 +195,195 @@ while True:
 
     ud_loop = ud_seguro()
 
-    # ── Marcador en frame ────────────────────────────────────────────────
+    # Cruz de referencia
+    cv2.line(display, (w//2 - 25, h//2), (w//2 + 25, h//2), (255, 0, 0), 1)
+    cv2.line(display, (w//2, h//2 - 25), (w//2, h//2 + 25), (255, 0, 0), 1)
+
     if ids is not None and len(corners) > 0:
+        for i, corner in enumerate(corners):
+            img_points = corner[0].astype(np.float32)
 
-        img_points = corners[0][0].astype(np.float32)
-        ok, rvec, tvec = cv2.solvePnP(obj_points, img_points, camera_matrix, dist_coeffs)
+            success, rvec, tvec = cv2.solvePnP(
+                obj_points, img_points, camera_matrix, dist_coeffs
+            )
+            if not success:
+                continue
 
-        if ok:
             distance        = tvec[2][0] * 100 * DIST_FACTOR
             lateral_real_cm = float(tvec[0][0] * 100)
 
             cx    = int(img_points[:, 0].mean())
             cy    = int(img_points[:, 1].mean())
-            err_x = cx - w // 2
-            err_y = cy - h // 2
+            err_x = cx - (w // 2)
+            err_y = cy - (h // 2)
 
             last_err_x = err_x
             last_err_y = err_y
-            # Actualizar último lado conocido según dónde esté el centroide
-            if err_x > 30:
-                last_lado = 1    # marcador a la derecha
-            elif err_x < -30:
-                last_lado = -1   # marcador a la izquierda
 
-            rmat, _ = cv2.Rodrigues(rvec)
+            rmat, _  = cv2.Rodrigues(rvec)
             angle_y  = np.degrees(np.arctan2(rmat[0][2], rmat[2][2]))
+
+            # Normalizar ángulo
+            if angle_y > 90:
+                angle_y = angle_y - 180
+            elif angle_y < -90:
+                angle_y = angle_y + 180
 
             # Dibujos
             cv2.polylines(display, [img_points.astype(int)], True, (0, 255, 0), 2)
             cv2.circle(display, (cx, cy), 5, (0, 0, 255), -1)
-            cv2.line(display, (w//2-20, h//2), (w//2+20, h//2), (255, 0, 0), 1)
-            cv2.line(display, (w//2, h//2-20), (w//2, h//2+20), (255, 0, 0), 1)
-            cv2.putText(display, f"{distance:.1f}cm",
-                        (cx-40, max(20, cy-30)), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0,255,0), 2)
+            cv2.putText(display, f"{distance:.1f} cm",
+                        (cx - 40, max(20, cy - 50)),
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 0), 2)
+            cv2.putText(display, f"lat:{lateral_real_cm:.1f}cm ang:{angle_y:.1f}",
+                        (cx - 40, max(40, cy - 30)),
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 1)
+
+            # Flechas informativas
+            acciones = []
+            flechas  = []
+            err_dist = distance - TARGET_DIST
+
+            if err_dist > 15:
+                acciones.append(f"Acercar {err_dist:.0f}cm")
+                flechas.append('↑')
+            elif err_dist < -15:
+                acciones.append(f"Alejar {abs(err_dist):.0f}cm")
+                flechas.append('↓')
+            if lateral_real_cm > TOL_X_CM:
+                acciones.append(f"Der {lateral_real_cm:.1f}cm")
+                flechas.append('→')
+            elif lateral_real_cm < -TOL_X_CM:
+                acciones.append(f"Izq {abs(lateral_real_cm):.1f}cm")
+                flechas.append('←')
+            if err_y > TOL_Y_PX:
+                acciones.append(f"Bajar {err_y}px")
+                flechas.append('↓')
+            elif err_y < -TOL_Y_PX:
+                acciones.append(f"Subir {abs(err_y)}px")
+                flechas.append('↑')
+            if angle_y > 8:
+                acciones.append(f"Girar der {angle_y:.1f}")
+                flechas.append('↻')
+            elif angle_y < -8:
+                acciones.append(f"Girar izq {abs(angle_y):.1f}")
+                flechas.append('↺')
+
+            for f in flechas:
+                dibujar_flecha(display, f)
+
+            estado       = "CENTRADO OK" if not acciones else "  ".join(acciones)
+            color_estado = (0, 255, 0)   if not acciones else (0, 200, 255)
+            cv2.putText(display, estado, (10, h - 20),
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.6, color_estado, 2)
             cv2.putText(display,
-                        f"F{fase}({intento}) | Alt:{height} | d:{distance:.0f} | ex:{err_x} ey:{err_y} ang:{angle_y:.1f}",
-                        (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.52, (255,255,0), 2)
+                        f"F{fase} | Alt:{height} | d:{distance:.0f} | lat:{lateral_real_cm:.1f} | ey:{err_y} | ang:{angle_y:.1f}",
+                        (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.50, (255, 255, 0), 2)
 
-            print_throttle(f"Dist:{distance:.1f} Lat:{lateral_real_cm:.1f} F:{fase} "
-                           f"Alt:{height} ex:{err_x} ey:{err_y} ang:{angle_y:.1f}")
+            print_throttle(f"Dist:{distance:.1f} Lat:{lateral_real_cm:.1f} Fase:{fase} "
+                           f"Alt:{height} ey:{err_y} ang:{angle_y:.1f} | "
+                           f"{'  '.join(flechas) if flechas else 'OK'}")
 
-            # ── FASE 1: acercarse a TARGET_DIST ─────────────────────────
+            # ── FASE 1: acercarse corrigiendo lateral y ángulo ──────────
             if fase == 1:
                 err_dist = distance - TARGET_DIST
-                fb       = int(np.clip(0.25 * err_dist, -20, 20))
-                yaw_f1   = int(np.clip(0.10 * err_x, -15, 15))
-                if abs(err_dist) < 15:
-                    drone.send_control(0, 0, 0, 0)
-                    print("Distancia alcanzada — iniciando centrado")
-                    intento = 0
-                    fase = 2
-                else:
-                    drone.send_control(0, fb, ud_loop, yaw_f1)
+                DIST_PREVIA = 250
 
-            # ── FASE 2: estabilizar antes de medir ──────────────────────
+                if distance > DIST_PREVIA:
+                    # Lejos — avanzar directo
+                    fb = int(np.clip(0.25 * err_dist, -20, 20))
+                    drone.send_control(0, fb, ud_loop, 0)
+
+                else:
+                    # Cerca — corregir todo simultáneamente y con más fuerza
+                    fb       = int(np.clip(0.25 * err_dist, -20, 20))
+                    yaw_fix  = int(np.clip(0.3  * angle_y,       -20, 20))  # más agresivo
+                    lr_fix   = int(np.clip(0.3  * lateral_real_cm, -20, 20))  # lateral físico
+
+                    if abs(err_dist) < 15:
+                        drone.send_control(0, 0, 0, 0)
+                        print("Distancia alcanzada — estabilizando...")
+                        fase = 2
+                    else:
+                        drone.send_control(lr_fix, fb, ud_loop, yaw_fix)
+
+            # ── FASE 2: estabilizar ──────────────────────────────────────
             elif fase == 2:
-                cv2.putText(display, f"Estabilizando... (intento {intento+1})",
-                            (20, 70), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255,165,0), 2)
+                cv2.putText(display, "Estabilizando...",
+                            (20, 70), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 165, 0), 2)
                 out.write(display)
                 cv2.imshow("Tello Vision", display)
                 cv2.waitKey(1)
-                drone.send_control(0, 0, 0, 0)
                 sleep_con_altura(1.5)
+                medidas_x   = []
+                medidas_y   = []
+                medidas_ang = []
+                medidas_lat = []
                 fase = 3
 
-            # ── FASE 3: medir con mediana ────────────────────────────────
+            # ── FASE 3: acumular lecturas ────────────────────────────────
             elif fase == 3:
-                cv2.putText(display, "Midiendo...",
-                            (20, 70), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255,165,0), 2)
-                out.write(display)
-                cv2.imshow("Tello Vision", display)
-                cv2.waitKey(1)
-
-                resultado = medir_frames(20)
-                if resultado is None:
-                    # No pudo medir — buscar marcador
-                    print("No se pudo medir — buscando marcador")
-                    fase = 1
+                if len(medidas_x) == 0 or abs(lateral_real_cm - np.mean(medidas_lat)) < 50:
+                    medidas_x.append(err_x)
+                    medidas_y.append(err_y)
+                    medidas_ang.append(angle_y)
+                    medidas_lat.append(lateral_real_cm)
                 else:
-                    avg_x, avg_y, avg_ang, avg_lat = resultado
-                    print(f"Medición [{intento+1}] -> ex:{avg_x:.1f}px ey:{avg_y:.1f}px "
-                          f"ang:{avg_ang:.1f}° lat:{avg_lat:.1f}cm")
+                    print_throttle(f"[RUIDO] lat={lateral_real_cm:.1f} descartado")
+
+                cv2.putText(display, f"Midiendo... {len(medidas_x)}/20",
+                            (20, 70), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 165, 0), 2)
+                drone.send_control(0, 0, ud_loop, 0)
+
+                if len(medidas_x) >= 20:
+                    avg_x   = float(np.median(medidas_x))
+                    avg_y   = float(np.median(medidas_y))
+                    avg_ang = float(np.median(medidas_ang))
+                    avg_lat = float(np.median(medidas_lat))
+                    print(f"Mediana -> lat:{avg_lat:.1f}cm ey:{avg_y:.1f}px ang:{avg_ang:.1f}°")
                     fase = 4
 
-            # ── FASE 4: corregir lateral (desplazamiento físico lr) ──────
+            # ── FASE 4: verificar centrado ───────────────────────────────
             elif fase == 4:
-                cv2.putText(display, f"Corr. lateral lat:{avg_lat:.1f}cm ex:{avg_x:.1f}px",
-                            (20, 70), cv2.FONT_HERSHEY_SIMPLEX, 0.65, (0,200,255), 2)
                 out.write(display)
                 cv2.imshow("Tello Vision", display)
                 cv2.waitKey(1)
-
-                # Usar avg_lat (tvec X) como fuente principal de desplazamiento real.
-                # avg_lat > 0 → marcador a la derecha → lr positivo (dron va derecha)
-                # avg_lat < 0 → marcador a la izquierda → lr negativo (dron va izquierda)
-                # Si avg_lat es pequeño pero err_x es grande, usar err_x como respaldo.
-                corr_lat = avg_lat
-                if abs(corr_lat) < 10 and abs(avg_x) > TOL_X_PX:
-                    corr_lat = avg_x * 0.10   # px → cm aproximado
-
-                if abs(corr_lat) > 8:
-                    lr_fix = int(np.clip(corr_lat * 0.45, -30, 30))
-                    dur_lr = min(abs(corr_lat) / 22.0, 4.0)
-                    print(f"  lr={lr_fix} dur={dur_lr:.2f}s (corr_lat={corr_lat:.1f}cm)")
-                    mover_con_altura(lr_fix, 0, 0, dur_lr)
+                if abs(avg_lat) <= TOL_X_CM and abs(avg_ang) <= 15.0:
+                    print("Centrado correcto — retrocediendo...")
+                    fase = 5
                 else:
-                    print(f"  Lateral ok ({corr_lat:.1f}cm)")
-
-                fase = 5
-
-            # ── FASE 5: corregir angular (yaw sobre sí mismo) ────────────
-            elif fase == 5:
-                cv2.putText(display, f"Corr. yaw ang:{avg_ang:.1f}° ex:{avg_x:.1f}px",
-                            (20, 70), cv2.FONT_HERSHEY_SIMPLEX, 0.65, (0,200,255), 2)
-                out.write(display)
-                cv2.imshow("Tello Vision", display)
-                cv2.waitKey(1)
-
-                # Corrección angular: usa avg_ang como referencia principal.
-                # Si avg_ang es pequeño pero err_x sigue siendo grande,
-                # corregir también con err_x.
-                corr_yaw = avg_ang
-                if abs(corr_yaw) < TOL_ANG and abs(avg_x) > TOL_X_PX:
-                    corr_yaw = avg_x * 0.08
-
-                if abs(corr_yaw) > TOL_ANG:
-                    yaw_fix = int(np.clip(corr_yaw * 0.35, -22, 22))
-                    dur_yaw = min(abs(corr_yaw) / 150.0, 2.5)
-                    print(f"  yaw={yaw_fix} dur={dur_yaw:.2f}s (corr_yaw={corr_yaw:.1f}°)")
-                    mover_con_altura(0, 0, yaw_fix, dur_yaw)
-                else:
-                    print(f"  Yaw ok ({corr_yaw:.1f}°)")
-
-                fase = 6
-
-            # ── FASE 6: verificar — medir de nuevo y decidir ─────────────
-            elif fase == 6:
-                cv2.putText(display, "Verificando...",
-                            (20, 70), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0,255,128), 2)
-                out.write(display)
-                cv2.imshow("Tello Vision", display)
-                cv2.waitKey(1)
-
-                resultado = medir_frames(15)
-                if resultado is None:
-                    print("Verificación sin marcador — reintentando desde fase 1")
-                    intento += 1
+                    print(f"No centrado (lat:{avg_lat:.1f} ang:{avg_ang:.1f}) — reposicionando...")
+                    medidas_x   = []
+                    medidas_y   = []
+                    medidas_ang = []
+                    medidas_lat = []
                     fase = 1
-                else:
-                    vx, vy, vang, vlat = resultado
-                    print(f"Verificación [{intento+1}] -> ex:{vx:.1f} ang:{vang:.1f}°")
 
-                    centrado_x   = abs(vx)   <= TOL_X_PX
-                    centrado_ang = abs(vang) <= TOL_ANG
-
-                    if centrado_x and centrado_ang:
-                        print("✓ Centrado correcto — retrocediendo")
-                        fase = 7
-                    elif intento + 1 >= MAX_INTENTOS_CENTRADO:
-                        print("Máximo de intentos alcanzado — retrocediendo igualmente")
-                        fase = 7
-                    else:
-                        print(f"No centrado (ex:{vx:.1f} ang:{vang:.1f}) — reintentando")
-                        # Actualizar promedios con la nueva medición para corregir mejor
-                        avg_x, avg_y, avg_ang, avg_lat = vx, vy, vang, vlat
-                        intento += 1
-                        fase = 4   # volver directo a corrección (no hace falta estabilizar de nuevo)
-
-            # ── FASE 7: retroceder ───────────────────────────────────────
-            elif fase == 7:
+            # ── FASE 5: retroceder ───────────────────────────────────────
+            elif fase == 5:
                 cv2.putText(display, "Retrocediendo...",
-                            (20, 70), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255,165,0), 2)
+                            (20, 70), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 165, 0), 2)
                 out.write(display)
                 cv2.imshow("Tello Vision", display)
                 cv2.waitKey(1)
                 mover_con_altura(0, -20, 0, 4.0)
-                fase = 8
+                fase = 6
 
-            # ── FASE 8: aterrizar ────────────────────────────────────────
-            elif fase == 8:
+            # ── FASE 6: aterrizar ────────────────────────────────────────
+            elif fase == 6:
                 print("Aterrizando...")
                 drone.land()
                 cleanup()
                 exit()
 
-    # ── Sin marcador en frame ────────────────────────────────────────────
+    # ── Sin marcador: búsqueda dirigida ─────────────────────────────────
     else:
-        # Determinar dirección de búsqueda según el último lado conocido.
-        # last_lado +1 = el marcador estaba a la derecha → girar derecha para encontrarlo
-        # last_lado -1 = el marcador estaba a la izquierda → girar izquierda
-        # last_lado  0 = nunca visto → girar derecha por defecto
-        if last_lado == -1:
-            yaw_recovery = -20
-            lado_txt = "izq (último lado conocido)"
-        else:
-            yaw_recovery = 20
-            lado_txt = "der (último lado conocido)"
-
-        cv2.putText(display, f"NO ARUCO | buscando {lado_txt}",
-                    (20, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.65, (0,0,255), 2)
+        yaw_recovery = 20 if last_err_x >= 0 else -20
+        cv2.putText(display,
+                    f"NO ARUCO | {'der' if last_err_x >= 0 else 'izq'}",
+                    (20, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
         drone.send_control(0, 0, ud_loop, yaw_recovery)
-        print_throttle(f"NO ARUCO | buscando {lado_txt}")
+        print_throttle("NO ARUCO")
 
     out.write(display)
     cv2.imshow("Tello Vision", display)
@@ -450,3 +392,4 @@ while True:
     time.sleep(0.05)
 
 cleanup()
+
