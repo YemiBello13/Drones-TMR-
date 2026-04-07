@@ -4,18 +4,25 @@ from djitellopy import Tello
 import time
 
 # ===== CONFIGURACIÓN DE MISIÓN =====
-ALTURA_ROJO  = 175  # Centro de la ventana pequeña (1.5m base + 0.25m ventana)
+ALTURA_ROJO  = 160  # Centro de la ventana pequeña (1.5m base + 0.25m ventana)
 EMERGENCY_CEIL = 200 # Altura máxima de seguridad (3 metros)
 TOLERANCIA_ALT = 5   # Tolerancia de altura en cm
 TOLERANCIA_X   = 20  # Tolerancia de centrado horizontal en píxeles
 
-# ===== RANGOS HSV PARA ROJO (Ajustado para mayor sensibilidad) =====
-rojo_bajo1 = np.array([0, 100, 100]);  rojo_alto1 = np.array([10, 255, 255])
-rojo_bajo2 = np.array([160, 100, 100]); rojo_alto2 = np.array([180, 255, 255])
+# ===== RANGOS HSV PARA ROJO/NARANJA/CAFÉ (ACTUALIZADO) =====
+# Se eliminaron los rangos anteriores de [0, 100, 100] que eran muy estrictos.
+# Estos nuevos rangos permiten detectar colores más oscuros y hacia el naranja.
+
+rojo_bajo1 = np.array([0, 40, 40])
+rojo_alto1 = np.array([25, 255, 255])
+
+rojo_bajo2 = np.array([155, 40, 40])
+rojo_alto2 = np.array([180, 255, 255])
 
 def obtener_centro_color(frame):
     """Devuelve las coordenadas (x, y) del centro de la masa roja más grande."""
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+    # Aquí se usan los nuevos rangos definidos arriba
     mask = cv2.add(cv2.inRange(hsv, rojo_bajo1, rojo_alto1), 
                     cv2.inRange(hsv, rojo_bajo2, rojo_alto2))
     
@@ -36,13 +43,29 @@ def obtener_centro_color(frame):
     return None, mask
 
 tello = Tello()
-tello.connect()
-print(f"Batería: {tello.get_battery()}%")
+
+def conectar_dron():
+    intentos = 0
+    while intentos < 3:
+        try:
+            tello.connect()
+            print(f"Conectado! Batería: {tello.get_battery()}%")
+            return True
+        except Exception as e:
+            print(f"Intento {intentos+1} fallido. Reintentando...")
+            intentos += 1
+            time.sleep(2)
+    return False
+
+if not conectar_dron():
+    print("Error de conexión.")
+    exit()
+
 tello.streamon()
 frame_read = tello.get_frame_read()
 
-fase = 1 # 1:Takeoff, 2:Buscar/Subir, 3:Centrar, 4:Cruzar, 5:Land
-centro_pantalla_x = 480 # La resolución del Tello es 960x720
+fase = 1 
+centro_pantalla_x = 480 
 
 try:
     print("FASE 1: Despegue")
@@ -54,7 +77,6 @@ try:
         img = frame_read.frame
         if img is None: continue
         
-        # Seguridad Manual (Espacio para emergencia, Q para aterrizar)
         key = cv2.waitKey(1) & 0xFF
         if key == ord(' '): tello.emergency(); break
         if key == ord('q'): tello.land(); break
@@ -65,19 +87,18 @@ try:
         # FASE 2: Alcanzar altura objetivo
         if fase == 2:
             if height < ALTURA_ROJO - TOLERANCIA_ALT:
-                tello.send_rc_control(0, 0, 30, 0) # Subir
+                tello.send_rc_control(0, 0, 30, 0) 
             elif height > ALTURA_ROJO + TOLERANCIA_ALT:
-                tello.send_rc_control(0, 0, -20, 0) # Bajar
+                tello.send_rc_control(0, 0, -20, 0) 
             else:
                 tello.send_rc_control(0, 0, 0, 0)
-                print("FASE 3: Centrando dron con el túnel rojo...")
+                print("FASE 3: Centrando...")
                 fase = 3
 
-        # FASE 3: Centrado Horizontal (Visual Servoing)
-        # Esto es vital para el túnel de 0.5m
+        # FASE 3: Centrado Horizontal Visual
         elif fase == 3:
             if pos_rojo:
-                cx, cy = pos_rojo
+                cx, cy = pos_rojo[0]
                 error_x = cx - centro_pantalla_x
                 
                 if abs(error_x) > TOLERANCIA_X:
@@ -88,23 +109,20 @@ try:
                     print("Centrado listo. FASE 4: Cruzando...")
                     fase = 4
             else:
-                # Si pierde el color, rotar un poco para buscarlo
-                tello.send_rc_control(0, 0, 0, 15)
+                tello.send_rc_control(0, 0, 0, 15) # Buscar rotando
 
-        # FASE 4: Avance de precisión
+        # FASE 4: Cruzar el túnel
         elif fase == 4:
-            # Los 5 aros forman un túnel de 2m. Avanzamos 2.5m para salir limpio.
             tello.move_forward(250)
             fase = 5
 
-        # FASE 5: Aterrizaje
+        # FASE 5: Aterrizar
         elif fase == 5:
-            print("Misión terminada exitosamente.")
+            print("Misión terminada.")
             tello.land()
             break
 
-        # Dibujar UI para telemetría
-        cv2.circle(img, (centro_pantalla_x, 360), 10, (255, 255, 255), 2)
+        # Telemetría visual
         if pos_rojo:
             cv2.circle(img, pos_rojo[0], 10, (0, 0, 255), -1)
         
