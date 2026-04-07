@@ -4,29 +4,22 @@ from djitellopy import Tello
 import time
 
 # ===== CONFIGURACIÓN DE MISIÓN =====
-ALTURA_ROJO  = 160  # Centro de la ventana pequeña (1.5m base + 0.25m ventana)
-EMERGENCY_CEIL = 200 # Altura máxima de seguridad (3 metros)
-TOLERANCIA_ALT = 5   # Tolerancia de altura en cm
-TOLERANCIA_X   = 20  # Tolerancia de centrado horizontal en píxeles
+ALTURA_ROJO  = 175  
+EMERGENCY_CEIL = 300 
+TOLERANCIA_ALT = 5   
+TOLERANCIA_X   = 20  
 
-# ===== RANGOS HSV PARA ROJO/NARANJA/CAFÉ (ACTUALIZADO) =====
-# Se eliminaron los rangos anteriores de [0, 100, 100] que eran muy estrictos.
-# Estos nuevos rangos permiten detectar colores más oscuros y hacia el naranja.
-
+# ===== RANGOS HSV PARA ROJO/NARANJA/CAFÉ =====
 rojo_bajo1 = np.array([0, 40, 40])
 rojo_alto1 = np.array([25, 255, 255])
-
 rojo_bajo2 = np.array([155, 40, 40])
 rojo_alto2 = np.array([180, 255, 255])
 
 def obtener_centro_color(frame):
-    """Devuelve las coordenadas (x, y) del centro de la masa roja más grande."""
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-    # Aquí se usan los nuevos rangos definidos arriba
     mask = cv2.add(cv2.inRange(hsv, rojo_bajo1, rojo_alto1), 
                     cv2.inRange(hsv, rojo_bajo2, rojo_alto2))
     
-    # Limpiar ruido
     mask = cv2.erode(mask, None, iterations=2)
     mask = cv2.dilate(mask, None, iterations=2)
     
@@ -34,12 +27,12 @@ def obtener_centro_color(frame):
     
     if contours:
         c = max(contours, key=cv2.contourArea)
-        if cv2.contourArea(c) > 5000: # Solo si el objeto es suficientemente grande
+        if cv2.contourArea(c) > 5000:
             M = cv2.moments(c)
             if M["m00"] != 0:
                 cx = int(M["m10"] / M["m00"])
                 cy = int(M["m01"] / M["m00"])
-                return (cx, cy), mask
+                return (cx, cy), mask # Retorna una tupla (x, y)
     return None, mask
 
 tello = Tello()
@@ -98,7 +91,7 @@ try:
         # FASE 3: Centrado Horizontal Visual
         elif fase == 3:
             if pos_rojo:
-                cx, cy = pos_rojo[0]
+                cx, cy = pos_rojo # CORREGIDO: pos_rojo ya tiene x e y
                 error_x = cx - centro_pantalla_x
                 
                 if abs(error_x) > TOLERANCIA_X:
@@ -124,13 +117,14 @@ try:
 
         # Telemetría visual
         if pos_rojo:
-            cv2.circle(img, pos_rojo[0], 10, (0, 0, 255), -1)
+            # CORREGIDO: Usamos pos_rojo directamente como el centro
+            cv2.circle(img, pos_rojo, 10, (0, 0, 255), -1)
         
         cv2.putText(img, f"Fase: {fase} | Alt: {height}cm", (20, 50), 2, 0.8, (0, 255, 0), 2)
         cv2.imshow("TMR - MISION 1 ROJO", img)
 
 except Exception as e:
-    print(f"Error: {e}")
+    print(f"Error detectado: {e}")
     tello.land()
 finally:
     tello.streamoff()
