@@ -16,7 +16,9 @@ rojo_bajo2 = np.array([155, 40, 40])
 rojo_alto2 = np.array([180, 255, 255])
 
 def obtener_centro_color(frame):
-    hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+    # CAMBIO IMPORTANTE: Usamos COLOR_RGB2HSV porque el Tello manda RGB
+    hsv = cv2.cvtColor(frame, cv2.COLOR_RGB2HSV)
+    
     mask = cv2.add(cv2.inRange(hsv, rojo_bajo1, rojo_alto1), 
                     cv2.inRange(hsv, rojo_bajo2, rojo_alto2))
     
@@ -32,7 +34,7 @@ def obtener_centro_color(frame):
             if M["m00"] != 0:
                 cx = int(M["m10"] / M["m00"])
                 cy = int(M["m01"] / M["m00"])
-                return (cx, cy), mask # Retorna una tupla (x, y)
+                return (cx, cy), mask
     return None, mask
 
 tello = Tello()
@@ -70,6 +72,9 @@ try:
         img = frame_read.frame
         if img is None: continue
         
+        # Para que el video se vea bien en pantalla, convertimos RGB a BGR antes de mostrarlo
+        frame_display = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
+        
         key = cv2.waitKey(1) & 0xFF
         if key == ord(' '): tello.emergency(); break
         if key == ord('q'): tello.land(); break
@@ -91,7 +96,7 @@ try:
         # FASE 3: Centrado Horizontal Visual
         elif fase == 3:
             if pos_rojo:
-                cx, cy = pos_rojo # CORREGIDO: pos_rojo ya tiene x e y
+                cx, cy = pos_rojo
                 error_x = cx - centro_pantalla_x
                 
                 if abs(error_x) > TOLERANCIA_X:
@@ -115,13 +120,12 @@ try:
             tello.land()
             break
 
-        # Telemetría visual
+        # Telemetría visual en el frame de pantalla
         if pos_rojo:
-            # CORREGIDO: Usamos pos_rojo directamente como el centro
-            cv2.circle(img, pos_rojo, 10, (0, 0, 255), -1)
+            cv2.circle(frame_display, pos_rojo, 10, (0, 0, 255), -1)
         
-        cv2.putText(img, f"Fase: {fase} | Alt: {height}cm", (20, 50), 2, 0.8, (0, 255, 0), 2)
-        cv2.imshow("TMR - MISION 1 ROJO", img)
+        cv2.putText(frame_display, f"Fase: {fase} | Alt: {height}cm", (20, 50), 2, 0.8, (0, 255, 0), 2)
+        cv2.imshow("TMR - MISION 1 ROJO", frame_display)
 
 except Exception as e:
     print(f"Error detectado: {e}")
