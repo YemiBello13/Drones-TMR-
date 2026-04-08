@@ -2,6 +2,7 @@ import cv2
 import numpy as np
 from djitellopy import Tello
 import time
+import os
 
 # ===== CONFIGURACIÓN DE MISIÓN =====
 ALTURA_ROJO  = 175  
@@ -16,7 +17,7 @@ rojo_bajo2 = np.array([155, 40, 40])
 rojo_alto2 = np.array([180, 255, 255])
 
 def obtener_centro_color(frame):
-    # CAMBIO IMPORTANTE: Usamos COLOR_RGB2HSV porque el Tello manda RGB
+    # El Tello manda RGB, OpenCV usa BGR para procesar
     hsv = cv2.cvtColor(frame, cv2.COLOR_RGB2HSV)
     
     mask = cv2.add(cv2.inRange(hsv, rojo_bajo1, rojo_alto1), 
@@ -59,6 +60,14 @@ if not conectar_dron():
 tello.streamon()
 frame_read = tello.get_frame_read()
 
+# --- CONFIGURACIÓN DEL GRABADOR DE VIDEO ---
+# Obtenemos el ancho y alto del frame del Tello (960x720 por defecto)
+width, height_frame = 960, 720
+video_name = f"vuelo_mision1_{int(time.time())}.avi"
+# Definimos el codec y creamos el objeto VideoWriter
+fourcc = cv2.VideoWriter_fourcc(*'XVID')
+out = cv2.VideoWriter(video_name, fourcc, 20.0, (width, height_frame))
+
 fase = 1 
 centro_pantalla_x = 480 
 
@@ -72,7 +81,7 @@ try:
         img = frame_read.frame
         if img is None: continue
         
-        # Para que el video se vea bien en pantalla, convertimos RGB a BGR antes de mostrarlo
+        # Convertimos RGB a BGR para que el video guardado y la pantalla tengan colores reales
         frame_display = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
         
         key = cv2.waitKey(1) & 0xFF
@@ -120,16 +129,24 @@ try:
             tello.land()
             break
 
-        # Telemetría visual en el frame de pantalla
+        # Telemetría visual en el frame
         if pos_rojo:
             cv2.circle(frame_display, pos_rojo, 10, (0, 0, 255), -1)
         
         cv2.putText(frame_display, f"Fase: {fase} | Alt: {height}cm", (20, 50), 2, 0.8, (0, 255, 0), 2)
+        
+        # --- GUARDAR FRAME EN EL VIDEO ---
+        out.write(frame_display)
+        
+        # Mostrar en pantalla
         cv2.imshow("TMR - MISION 1 ROJO", frame_display)
 
 except Exception as e:
     print(f"Error detectado: {e}")
     tello.land()
 finally:
+    # --- CERRAR RECURSOS ---
+    print(f"Video guardado como: {video_name}")
+    out.release() # Muy importante para que el video no se corrompa
     tello.streamoff()
     cv2.destroyAllWindows()
