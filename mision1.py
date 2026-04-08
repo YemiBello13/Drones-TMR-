@@ -5,7 +5,7 @@ import time
 
 # ===== CONFIGURACIÓN DE MISIÓN (3 PUNTOS) =====
 ALTURA_ROJO    = 175  # 1.5m base + 0.25m centro ventana
-EMERGENCY_CEIL = 300 
+EMERGENCY_CEIL = 200 
 TOLERANCIA_ALT = 5   
 TOLERANCIA_X   = 25  
 AREA_MINIMA    = 6000 # Para no confundirse con ruidos lejanos
