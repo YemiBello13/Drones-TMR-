@@ -4,15 +4,15 @@ from djitellopy import Tello
 import time
 
 # ===== CONFIGURACIÓN TÚNEL PEQUEÑO (0.5m x 0.5m, base 1.5m) =====
-ALTURA_ROJO    = 175   # cm — base 150cm + mitad ventana 25cm
+ALTURA_ROJO    = 175   # cm — base 150cm + mitad ventana 25cm (igual que código 2)
 TOLERANCIA_ALT = 5
-TOLERANCIA_X   = 15
+TOLERANCIA_X   = 25    # ← Del código 2 (era 15, ahora 25)
 TOLERANCIA_Y   = 15
-AREA_MINIMA    = 800
+AREA_MINIMA    = 6000  # ← Del código 2 (era 800, ahora 6000)
 AREA_MAXIMA    = 8000
 
 # ===== TECHO DE EMERGENCIA AUTOMÁTICO =====
-EMERGENCY_CEIL = 200   # Si supera 200cm → aterrizaje automático
+EMERGENCY_CEIL = 200
 
 # ===== RATIO CUADRADO =====
 RATIO_MIN = 0.65
@@ -87,6 +87,35 @@ def detectar_tunel_cuadrado_rojo(frame):
     return mejor_centro, mejor_area, mejor_contorno
 
 
+def aterrizaje_suave(tello):
+    """
+    Baja gradualmente en 3 velocidades según la altura.
+    Evita caída brusca al final.
+    """
+    print("Iniciando descenso suave...")
+    while True:
+        h = tello.get_height()
+
+        if h > 120:
+            # Alto: baja rápido
+            tello.send_rc_control(0, 0, -30, 0)
+        elif h > 60:
+            # Medio: baja moderado
+            tello.send_rc_control(0, 0, -20, 0)
+        elif h > 30:
+            # Bajo: baja despacio
+            tello.send_rc_control(0, 0, -10, 0)
+        else:
+            # Muy cerca del suelo → land suave
+            tello.send_rc_control(0, 0, 0, 0)
+            time.sleep(0.3)
+            tello.land()
+            print("✓ Aterrizaje suave completado")
+            break
+
+        time.sleep(0.15)
+
+
 # ===== CONEXIÓN Y STREAM =====
 tello = Tello()
 tello.connect()
@@ -132,18 +161,18 @@ try:
 
         key = cv2.waitKey(1) & 0xFF
 
-        # ── NIVEL 1: Emergencia manual con Q (corta motores al instante) ──
+        # ── NIVEL 1: Emergencia manual Q (corta motores al instante) ──
         if key == ord('q'):
             print("🛑 EMERGENCIA MANUAL (Q) — Motores cortados al instante")
             tello.emergency()
             break
 
-        # ── NIVEL 2: Salida limpia con ESPACIO (aterrizaje suave) ──
+        # ── NIVEL 2: Salida limpia ESPACIO (aterrizaje suave) ──
         if key == ord(' '):
-            print("🔽 SALIDA LIMPIA (ESPACIO) — Aterrizando suavemente")
+            print("🔽 SALIDA LIMPIA (ESPACIO) — Aterrizaje suave")
             tello.send_rc_control(0, 0, 0, 0)
             time.sleep(0.2)
-            tello.land()
+            aterrizaje_suave(tello)
             break
 
         height = tello.get_height()
@@ -153,17 +182,17 @@ try:
             print(f"⚠ TECHO DE EMERGENCIA: {height}cm >= {EMERGENCY_CEIL}cm — Aterrizando!")
             tello.send_rc_control(0, 0, 0, 0)
             time.sleep(0.2)
-            tello.land()
+            aterrizaje_suave(tello)
             break
 
         pos_tunel, area_tunel, contorno_tunel = detectar_tunel_cuadrado_rojo(img)
 
         # --------------------------------------------------
-        # FASE 2: ALCANZAR ALTURA 175cm
+        # FASE 2: ALCANZAR ALTURA 175cm (velocidad del código 2)
         # --------------------------------------------------
         if fase == 2:
             if height < ALTURA_ROJO - TOLERANCIA_ALT:
-                tello.send_rc_control(0, 0, 25, 0)
+                tello.send_rc_control(0, 0, 30, 0)   # ← velocidad 30 del código 2
             elif height > ALTURA_ROJO + TOLERANCIA_ALT:
                 tello.send_rc_control(0, 0, -20, 0)
             else:
@@ -185,7 +214,7 @@ try:
                 cv2.line(frame_display, (0, centro_y), (w, centro_y), (255, 255, 0), 1)
 
                 if abs(error_x) > TOLERANCIA_X:
-                    vel_lat = 18 if error_x > 0 else -18
+                    vel_lat = 15 if error_x > 0 else -15  # ← vel 15 del código 2
                     tello.send_rc_control(vel_lat, 0, 0, 0)
                     cv2.putText(frame_display,
                                 f"Centrando X... err={error_x}px",
@@ -202,8 +231,9 @@ try:
                     fase = 4
 
             else:
+                # No detecta → girar a buscar (vel 30 del código 2)
                 frames_sin_tunel += 1
-                tello.send_rc_control(0, 0, 0, 20 * sentido_giro)
+                tello.send_rc_control(0, 0, 0, 30)  # ← yaw 30 del código 2
 
                 if frames_sin_tunel % FRAMES_SIN_TUNEL_MAX == 0:
                     giros_realizados += 1
@@ -219,25 +249,23 @@ try:
                             (20, 70), 2, 0.65, (0, 0, 255), 2)
 
         # --------------------------------------------------
-        # FASE 4: CRUZAR TÚNEL
+        # FASE 4: CRUZAR TÚNEL (300cm del código 2)
         # --------------------------------------------------
         elif fase == 4:
             print("FASE 4: Cruzando túnel pequeño (300cm)...")
             tello.send_rc_control(0, 0, 0, 0)
             time.sleep(0.3)
-            tello.move_forward(300)
+            tello.move_forward(300)   # ← 300cm del código 2
             print("✓ Túnel cruzado. FASE 5: Aterrizaje")
             fase = 5
 
         # --------------------------------------------------
-        # FASE 5: ATERRIZAJE
+        # FASE 5: ATERRIZAJE SUAVE (gradual, no de golpe)
         # --------------------------------------------------
         elif fase == 5:
-            print("FASE 5: Aterrizando...")
-            while tello.get_height() > 40:
-                tello.send_rc_control(0, 0, -20, 0)
-                time.sleep(0.2)
-            tello.land()
+            tello.send_rc_control(0, 0, 0, 0)
+            time.sleep(0.3)
+            aterrizaje_suave(tello)
             break
 
         # --------------------------------------------------
@@ -254,23 +282,19 @@ try:
                             (pos_tunel[0]-40, pos_tunel[1]-20),
                             2, 0.6, (0, 255, 0), 2)
 
-            # Retícula central
             cv2.drawMarker(frame_display, (centro_x, centro_y),
                            (255, 255, 0), cv2.MARKER_CROSS, 25, 2)
 
-            # HUD principal
             cv2.putText(frame_display,
                         f"FASE:{fase} | ALT:{height}cm | BAT:{tello.get_battery()}%",
                         (20, 40), 2, 0.7, (0, 255, 0), 2)
 
-            # HUD de controles (esquina inferior izquierda)
-            cv2.putText(frame_display, "Q=EMERGENCIA | SPACE=ATERIZAR",
+            cv2.putText(frame_display, "Q=EMERGENCIA | SPACE=ATERRIZAR",
                         (20, h - 20), 2, 0.5, (0, 255, 255), 1)
 
-            # Advertencia si se acerca al techo
             if height >= EMERGENCY_CEIL - 20:
                 cv2.putText(frame_display,
-                            f"⚠ CERCA DEL TECHO: {height}cm/{EMERGENCY_CEIL}cm",
+                            f"CERCA DEL TECHO: {height}cm/{EMERGENCY_CEIL}cm",
                             (20, h - 50), 2, 0.6, (0, 0, 255), 2)
 
             out.write(frame_display)
@@ -278,7 +302,7 @@ try:
 
 except Exception as e:
     print(f"ERROR CRÍTICO: {e}")
-    tello.land()
+    aterrizaje_suave(tello)
 
 finally:
     print(f"Guardando: {video_name}")
