@@ -1,0 +1,1995 @@
+shi@shi-IdeaPad-Slim-5-14ABR8:~/djitello$ sudo python3 mision1.py 
+[sudo] password for shi: 
+[INFO] tello.py - 129 - Tello instance was initialized. Host: '192.168.10.1'. Port: '8889'.
+[INFO] tello.py - 438 - Send command: 'command'
+[INFO] tello.py - 462 - Response command: 'ok'
+BATERÍA: 74%
+[INFO] tello.py - 438 - Send command: 'streamon'
+[INFO] tello.py - 462 - Response streamon: 'ok'
+Esperando cámara...
+FASE 1: Despegue
+─────────────────────────────────────────
+  CONTROLES:
+  Q        → Emergencia manual (corta motores)
+  ESPACIO  → Salida limpia (aterrizaje suave)
+  AUTO     → Techo 200cm (aterrizaje automático)
+─────────────────────────────────────────
+[INFO] tello.py - 438 - Send command: 'takeoff'
+[INFO] tello.py - 462 - Response takeoff: 'ok'
+FASE 2: Ajustando altura (175cm)
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@8.819] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+QFontDatabase: Cannot find font directory /usr/local/lib/python3.10/dist-packages/cv2/qt/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.
+QFontDatabase: Cannot find font directory /usr/local/lib/python3.10/dist-packages/cv2/qt/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.
+QFontDatabase: Cannot find font directory /usr/local/lib/python3.10/dist-packages/cv2/qt/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.
+QFontDatabase: Cannot find font directory /usr/local/lib/python3.10/dist-packages/cv2/qt/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.
+QFontDatabase: Cannot find font directory /usr/local/lib/python3.10/dist-packages/cv2/qt/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@8.977] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@9.010] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@9.044] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@9.068] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@9.104] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@9.129] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@9.162] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@9.186] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@9.209] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@9.239] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@9.265] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@9.289] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@9.311] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@9.336] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@9.357] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@9.375] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@9.394] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@9.412] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@9.422] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@9.440] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@9.454] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@9.468] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@9.484] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@9.499] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@9.516] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@9.528] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@9.549] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@9.560] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@9.572] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@9.584] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@9.606] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@9.615] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@9.634] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@9.646] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@9.663] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@9.676] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@9.689] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@9.706] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@9.715] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@9.736] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@9.747] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@9.765] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@9.780] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@9.798] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@9.812] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@9.834] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@9.849] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@9.861] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@9.872] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@9.885] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@9.897] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@9.911] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@9.920] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@9.931] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@9.945] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@9.954] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@9.967] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@9.982] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@9.996] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.012] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.021] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.035] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.051] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.066] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.082] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.095] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.111] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.119] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.132] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.147] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.163] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.179] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.188] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.206] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.217] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.231] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.248] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.264] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.280] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.290] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.308] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.318] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.339] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.349] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.369] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.382] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.400] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.415] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.431] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.444] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.457] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.472] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.483] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.500] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.512] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.526] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.540] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.558] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.570] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.581] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.595] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.606] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.619] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.632] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.650] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.662] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.672] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.685] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.696] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.708] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.720] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.731] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.744] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.753] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.763] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.775] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.793] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.814] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.835] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.853] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.866] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.882] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.896] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.913] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.923] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.939] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.955] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.967] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.983] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@10.998] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.015] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.025] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.044] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.061] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.080] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.104] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.119] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.132] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.150] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.159] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.178] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.193] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.208] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.218] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.238] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.247] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.262] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.275] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.286] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.303] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.314] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.334] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.346] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.361] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.375] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.386] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.399] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.411] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.425] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.439] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.451] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.464] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.476] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.490] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.502] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.517] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.530] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.546] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.562] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.571] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.583] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.596] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.609] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.619] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.631] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.648] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.665] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.679] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.688] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.699] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.715] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.727] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.740] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.750] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.762] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.777] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.787] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.804] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.814] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.830] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.845] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.854] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.871] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.885] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.900] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.913] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.923] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.942] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.952] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.972] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@11.982] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.002] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.014] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.031] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.046] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.059] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.077] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.089] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.106] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.115] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.135] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.148] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.166] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.178] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.193] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.205] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.218] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.230] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.241] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.255] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.265] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.280] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.296] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.308] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.320] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.331] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.345] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.356] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.373] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.387] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.398] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.411] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.420] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.431] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.446] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.454] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.467] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.484] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.496] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.511] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.520] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.531] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.551] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.564] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.578] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.586] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.605] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.617] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.634] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.648] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.664] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.678] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.688] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.707] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.717] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.738] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.748] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.765] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.782] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.803] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.814] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.832] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.845] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.861] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.876] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.889] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.909] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.920] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.940] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.949] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.967] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@12.980] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.003] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.014] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.035] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.046] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.063] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.080] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.101] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.114] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.124] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.137] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.151] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.162] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.175] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.186] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.198] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.217] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.229] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.245] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.253] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.264] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.280] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.289] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.301] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.318] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.331] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.348] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.358] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.378] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.394] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.408] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.417] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.432] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.447] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.458] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.477] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.487] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.507] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.518] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.538] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.550] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.570] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.578] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.589] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.608] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.619] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.638] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.649] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.667] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.678] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.697] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.711] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.730] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.740] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.755] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.768] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.786] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.806] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.826] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.843] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.862] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.879] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.896] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.909] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.922] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.935] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.950] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.966] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.981] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@13.995] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.006] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.019] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.031] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.047] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.063] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.077] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.088] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.098] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.117] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.126] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.147] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.173] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.191] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.202] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.215] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.225] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.244] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.254] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.272] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.281] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.302] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.315] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.326] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.343] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.354] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.375] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.384] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.403] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.415] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.432] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.445] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.466] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.478] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.495] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.509] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.521] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.535] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.550] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.566] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.577] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.591] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.603] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.614] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.629] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.644] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.655] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.667] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.680] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.691] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.705] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.719] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.731] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.742] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.752] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.764] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.777] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.789] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.800] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.816] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.831] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.847] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.858] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.873] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.888] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.899] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.916] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.929] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.947] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.960] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.978] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@14.988] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.005] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.015] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.033] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.047] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.060] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.077] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.088] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.107] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.117] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.136] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.147] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.163] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.178] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.191] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.208] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.220] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.238] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.248] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.263] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.280] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.294] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.309] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.320] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.339] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.352] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.365] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.380] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.396] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.406] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.418] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.430] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.442] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.454] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.465] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.478] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.490] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.506] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.518] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.530] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.549] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.563] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.578] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.586] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.596] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.611] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.619] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.629] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.648] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.664] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.680] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.690] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.708] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.721] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.739] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.750] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.768] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.782] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.800] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.813] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.826] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.842] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.854] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.873] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.884] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.902] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.914] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.934] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.944] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.954] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.970] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.981] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@15.994] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@16.005] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@16.022] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@16.035] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@16.047] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@16.062] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@16.074] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@16.087] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@16.099] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@16.111] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@16.123] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@16.134] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@16.148] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@16.157] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@16.169] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@16.184] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@16.197] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@16.210] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@16.223] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@16.234] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@16.249] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@16.263] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@16.276] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@16.287] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@16.299] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@16.314] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@16.330] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@16.347] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@16.356] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@16.371] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@16.384] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@16.402] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@16.415] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@16.430] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@16.446] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@16.455] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@16.474] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@16.485] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@16.505] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 30 0'
+[ WARN:0@16.515] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 0'
+✓ Altura lista. FASE 3: Buscando túnel cuadrado rojo
+[ WARN:0@16.538] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@16.550] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@16.567] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@16.576] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@16.583] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@16.599] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@16.614] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@16.627] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@16.646] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@16.658] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@16.676] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@16.685] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@16.706] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@16.717] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@16.737] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@16.750] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@16.764] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@16.781] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@16.796] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@16.809] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@16.824] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@16.837] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@16.856] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@16.866] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@16.882] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@16.895] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@16.908] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@16.923] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@16.935] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@16.954] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+  Buscando túnel... giro 1/12
+[ WARN:0@16.965] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@16.982] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@16.993] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.006] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.019] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.028] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.042] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.057] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.068] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.086] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.095] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.115] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.125] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.144] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.154] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.163] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.182] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.192] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.211] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.221] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.242] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.253] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.267] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.283] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.297] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.314] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.326] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.343] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.352] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.372] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+  Buscando túnel... giro 2/12
+[ WARN:0@17.388] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.408] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.421] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.439] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.449] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.469] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.480] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.497] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.510] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.526] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.537] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.551] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.568] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.577] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.592] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.603] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.615] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.627] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.638] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.655] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.668] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.684] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.696] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.709] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.722] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.733] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.745] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.757] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.767] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.785] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+  Buscando túnel... giro 3/12
+[ WARN:0@17.809] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.825] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.841] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.854] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.867] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.881] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.892] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.906] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.917] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.928] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.944] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.955] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.973] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@17.984] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.001] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.014] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.023] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.038] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.053] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.070] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.084] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.099] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.116] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.137] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.147] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.158] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.177] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.187] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.206] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.219] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+  Buscando túnel... giro 4/12
+[ WARN:0@18.241] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.252] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.273] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.283] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.305] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.316] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.335] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.347] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.363] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.375] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.390] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.401] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.414] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.425] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.437] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.452] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.466] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.481] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.494] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.511] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.525] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.537] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.559] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.569] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.579] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.591] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.602] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.617] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.632] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.645] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+  Buscando túnel... giro 5/12
+[ WARN:0@18.656] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.670] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.685] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.697] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.714] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.724] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.738] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.752] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.765] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.781] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.790] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.808] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.818] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.836] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.851] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.861] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.881] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.891] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.910] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.920] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.941] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.952] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.978] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@18.992] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.009] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.021] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.041] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.055] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.076] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.085] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+  Buscando túnel... giro 6/12
+  Cambiando sentido de búsqueda
+[ WARN:0@19.102] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.114] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.138] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.148] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.169] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.180] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.198] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.211] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.226] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.238] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.248] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.264] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.277] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.291] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.303] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.319] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.333] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.344] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.355] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.367] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.381] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.389] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.400] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.413] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.425] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.437] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.451] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.465] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.483] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.494] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+  Buscando túnel... giro 7/12
+[ WARN:0@19.510] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.523] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.533] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.554] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.569] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.582] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.594] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.616] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.634] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.646] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.660] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.679] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.688] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.709] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.717] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.733] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.749] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.763] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.782] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.794] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.813] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.826] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.843] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.855] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.875] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.885] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.904] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.917] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.937] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.947] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+  Buscando túnel... giro 8/12
+[ WARN:0@19.959] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.978] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@19.990] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.008] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.022] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.041] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.050] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.070] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.084] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.103] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.116] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.130] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.142] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.153] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.166] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.180] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.189] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.201] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.216] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.227] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.242] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.253] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.264] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.279] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.288] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.296] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.314] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.327] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.343] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.359] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+  Buscando túnel... giro 9/12
+[ WARN:0@20.376] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.389] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.406] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.419] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.438] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.451] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.468] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.482] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.501] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.513] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc -15 0 0 0'
+[ WARN:0@20.523] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc -15 0 0 0'
+[ WARN:0@20.542] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.554] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.570] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.580] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.590] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.606] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.618] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.634] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.649] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.669] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.680] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.694] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.707] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.718] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.731] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.740] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.756] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.773] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.792] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.812] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.826] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.839] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.856] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.866] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.883] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.894] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.906] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.920] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.932] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.949] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+  Buscando túnel... giro 10/12
+[ WARN:0@20.964] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.978] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@20.993] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@21.007] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@21.020] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@21.034] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@21.050] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@21.063] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@21.080] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@21.088] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@21.104] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@21.116] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@21.131] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@21.147] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@21.156] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@21.174] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@21.184] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@21.202] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@21.215] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@21.235] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@21.248] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@21.260] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@21.279] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@21.293] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@21.309] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@21.319] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@21.339] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@21.350] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@21.369] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@21.381] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+  Buscando túnel... giro 11/12
+[ WARN:0@21.401] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@21.414] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@21.431] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@21.441] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@21.452] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@21.466] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@21.478] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@21.491] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@21.503] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@21.519] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@21.532] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@21.552] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@21.566] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@21.579] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@21.591] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@21.602] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@21.616] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@21.624] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@21.635] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@21.650] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@21.664] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@21.679] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@21.691] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@21.705] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@21.718] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@21.730] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@21.744] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@21.755] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@21.766] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+[ WARN:0@21.783] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 30'
+  Buscando túnel... giro 12/12
+⚠ Túnel no encontrado. Aterrizando.
+[ WARN:0@21.794] global cap_ffmpeg.cpp:218 write FFmpeg: Failed to write frame
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 0'
+Iniciando descenso suave...
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -30 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -30 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -30 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -30 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -30 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -30 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -30 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -30 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -30 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -30 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -30 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -30 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -30 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -30 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -30 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -30 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -30 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -30 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -30 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -30 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -30 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -30 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -20 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -20 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -20 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -20 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -20 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -20 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -20 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -20 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -20 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -20 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -20 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -20 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -20 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -20 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -20 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -20 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -20 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -20 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -20 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -20 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -20 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -20 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -20 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -20 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -20 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -20 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -20 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -20 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -20 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -20 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -20 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -20 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -20 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -20 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -20 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -20 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -20 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -20 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -20 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -20 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -20 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -20 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -20 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -20 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -20 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -20 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -20 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -20 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -20 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 -10 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 0'
+[INFO] tello.py - 438 - Send command: 'land'
+[INFO] tello.py - 462 - Response land: 'ok'
+✓ Aterrizaje suave completado
+Guardando: tunel_pequeno_rojo_1775927942.avi
+[INFO] tello.py - 438 - Send command: 'streamoff'
+[INFO] tello.py - 462 - Response streamoff: 'ok'
