@@ -3,26 +3,28 @@ import numpy as np
 from djitellopy import Tello
 import time
 
-# ===== CONFIGURACIÓN TÚNEL PEQUEÑO (0.5m x 0.5m, base 1.5m) =====
-ALTURA_ROJO    = 175   # cm — base 150cm + mitad ventana 25cm (igual que código 2)
+# ===== CONFIGURACIÓN =====
+ALTURA_ROJO    = 175
 TOLERANCIA_ALT = 5
-TOLERANCIA_X   = 25    # ← Del código 2 (era 15, ahora 25)
-TOLERANCIA_Y   = 15
-AREA_MINIMA    = 6000  # ← Del código 2 (era 800, ahora 6000)
-AREA_MAXIMA    = 8000
-
-# ===== TECHO DE EMERGENCIA AUTOMÁTICO =====
+TOLERANCIA_X   = 25
+TOLERANCIA_Y   = 20
 EMERGENCY_CEIL = 200
 
-# ===== RATIO CUADRADO =====
-RATIO_MIN = 0.65
-RATIO_MAX = 1.35
+# ===== ÁREA — ajustada para PVC rojo desde distancia =====
+AREA_MINIMA = 500    # ← Muy reducida, el gate se ve pequeño de lejos
+AREA_MAXIMA = 80000  # ← Amplia para cuando esté cerca
 
-# ===== RANGOS HSV — ROJO PURO =====
-rojo_bajo1 = np.array([0,   100, 100])
-rojo_alto1 = np.array([10,  255, 255])
-rojo_bajo2 = np.array([160, 100, 100])
-rojo_alto2 = np.array([180, 255, 255])
+# ===== RATIO — más tolerante para PVC con esquinas redondeadas =====
+RATIO_MIN = 0.55
+RATIO_MAX = 1.45
+
+# ===== HSV ROJO — calibrado para PVC rojo brillante bajo luz artificial =====
+# El PVC rojo en interiores con luz fluorescente tiende a ser rojo-naranja
+rojo_bajo1 = np.array([0,   120, 80])   # H=0  rojo puro
+rojo_alto1 = np.array([15,  255, 255])  # H=15 incluye rojo-naranja del PVC
+
+rojo_bajo2 = np.array([155, 120, 80])   # H=155 rojo frío
+rojo_alto2 = np.array([180, 255, 255])  # H=180
 
 # ===== VARIABLES DE BÚSQUEDA =====
 FRAMES_SIN_TUNEL_MAX = 30
@@ -31,24 +33,33 @@ sentido_giro         = 1
 giros_realizados     = 0
 MAX_GIROS            = 12
 
-def detectar_tunel_cuadrado_rojo(frame):
+def detectar_gate_rojo(frame):
+    """
+    Detección simplificada — NO exige vértices exactos.
+    Solo requiere: color rojo + forma aproximadamente cuadrada.
+    Funciona con PVC de esquinas redondeadas.
+    """
     if frame is None:
         return None, 0, None
 
     hsv = cv2.cvtColor(frame, cv2.COLOR_RGB2HSV)
+
     mask = cv2.add(
         cv2.inRange(hsv, rojo_bajo1, rojo_alto1),
         cv2.inRange(hsv, rojo_bajo2, rojo_alto2)
     )
-    kernel = np.ones((5, 5), np.uint8)
-    mask = cv2.erode(mask,  kernel, iterations=2)
-    mask = cv2.dilate(mask, kernel, iterations=3)
+
+    # Morfología más agresiva para cerrar las esquinas del PVC
+    kernel = np.ones((7, 7), np.uint8)
+    mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernel, iterations=3)
+    mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN,  kernel, iterations=1)
 
     contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
     mejor_contorno = None
     mejor_area     = 0
     mejor_centro   = None
+    mejor_bbox     = None
 
     for c in contours:
         area = cv2.contourArea(c)
@@ -58,23 +69,12 @@ def detectar_tunel_cuadrado_rojo(frame):
         x, y, bw, bh = cv2.boundingRect(c)
         if bh == 0:
             continue
+
         ratio = bw / bh
         if not (RATIO_MIN <= ratio <= RATIO_MAX):
             continue
 
-        hull      = cv2.convexHull(c)
-        hull_area = cv2.contourArea(hull)
-        if hull_area == 0:
-            continue
-        solidez = area / hull_area
-        if solidez < 0.6:
-            continue
-
-        perimetro = cv2.arcLength(c, True)
-        approx    = cv2.approxPolyDP(c, 0.04 * perimetro, True)
-        if not (4 <= len(approx) <= 6):
-            continue
-
+        # ── Sin exigir vértices: solo color + ratio cuadrado ──
         if area > mejor_area:
             M = cv2.moments(c)
             if M["m00"] != 0:
@@ -82,41 +82,32 @@ def detectar_tunel_cuadrado_rojo(frame):
                 cy = int(M["m01"] / M["m00"])
                 mejor_area     = area
                 mejor_centro   = (cx, cy)
-                mejor_contorno = approx
+                mejor_contorno = c
+                mejor_bbox     = (x, y, bw, bh)
 
-    return mejor_centro, mejor_area, mejor_contorno
+    return mejor_centro, mejor_area, mejor_bbox
 
 
 def aterrizaje_suave(tello):
-    """
-    Baja gradualmente en 3 velocidades según la altura.
-    Evita caída brusca al final.
-    """
     print("Iniciando descenso suave...")
     while True:
         h = tello.get_height()
-
         if h > 120:
-            # Alto: baja rápido
             tello.send_rc_control(0, 0, -30, 0)
         elif h > 60:
-            # Medio: baja moderado
             tello.send_rc_control(0, 0, -20, 0)
         elif h > 30:
-            # Bajo: baja despacio
             tello.send_rc_control(0, 0, -10, 0)
         else:
-            # Muy cerca del suelo → land suave
             tello.send_rc_control(0, 0, 0, 0)
             time.sleep(0.3)
             tello.land()
             print("✓ Aterrizaje suave completado")
             break
-
         time.sleep(0.15)
 
 
-# ===== CONEXIÓN Y STREAM =====
+# ===== CONEXIÓN =====
 tello = Tello()
 tello.connect()
 print(f"BATERÍA: {tello.get_battery()}%")
@@ -133,7 +124,7 @@ centro_x = w // 2
 centro_y = h // 2
 
 # ===== GRABACIÓN =====
-video_name = f"tunel_pequeno_rojo_{int(time.time())}.avi"
+video_name = f"tunel_rojo_{int(time.time())}.avi"
 fourcc = cv2.VideoWriter_fourcc(*'XVID')
 out    = cv2.VideoWriter(video_name, fourcc, 20.0, (w, h))
 
@@ -142,10 +133,9 @@ fase = 1
 try:
     print("FASE 1: Despegue")
     print("─────────────────────────────────────────")
-    print("  CONTROLES:")
-    print("  Q        → Emergencia manual (corta motores)")
-    print("  ESPACIO  → Salida limpia (aterrizaje suave)")
-    print(f"  AUTO     → Techo {EMERGENCY_CEIL}cm (aterrizaje automático)")
+    print("  Q       → Emergencia (corta motores)")
+    print("  ESPACIO → Aterrizaje suave")
+    print(f"  AUTO    → Techo {EMERGENCY_CEIL}cm")
     print("─────────────────────────────────────────")
     tello.takeoff()
     time.sleep(2)
@@ -153,23 +143,25 @@ try:
     print("FASE 2: Ajustando altura (175cm)")
 
     while True:
+        # ── Siempre leer frame primero ──
         img = frame_read.frame
         if img is None:
+            cv2.waitKey(1)
             continue
 
         frame_display = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
 
+        # ── Mostrar imagen SIEMPRE (mantiene el buffer activo) ──
+        cv2.imshow("TMR - GATE ROJO", frame_display)
         key = cv2.waitKey(1) & 0xFF
 
-        # ── NIVEL 1: Emergencia manual Q (corta motores al instante) ──
         if key == ord('q'):
-            print("🛑 EMERGENCIA MANUAL (Q) — Motores cortados al instante")
+            print("🛑 EMERGENCIA (Q)")
             tello.emergency()
             break
 
-        # ── NIVEL 2: Salida limpia ESPACIO (aterrizaje suave) ──
         if key == ord(' '):
-            print("🔽 SALIDA LIMPIA (ESPACIO) — Aterrizaje suave")
+            print("🔽 Aterrizaje manual")
             tello.send_rc_control(0, 0, 0, 0)
             time.sleep(0.2)
             aterrizaje_suave(tello)
@@ -177,135 +169,40 @@ try:
 
         height = tello.get_height()
 
-        # ── NIVEL 3: Techo de emergencia automático ──
         if height >= EMERGENCY_CEIL:
-            print(f"⚠ TECHO DE EMERGENCIA: {height}cm >= {EMERGENCY_CEIL}cm — Aterrizando!")
+            print(f"⚠ TECHO: {height}cm — Aterrizando")
             tello.send_rc_control(0, 0, 0, 0)
             time.sleep(0.2)
             aterrizaje_suave(tello)
             break
 
-        pos_tunel, area_tunel, contorno_tunel = detectar_tunel_cuadrado_rojo(img)
+        pos_gate, area_gate, bbox_gate = detectar_gate_rojo(img)
 
         # --------------------------------------------------
-        # FASE 2: ALCANZAR ALTURA 175cm (velocidad del código 2)
+        # FASE 2: ALTURA 175cm
         # --------------------------------------------------
         if fase == 2:
             if height < ALTURA_ROJO - TOLERANCIA_ALT:
-                tello.send_rc_control(0, 0, 30, 0)   # ← velocidad 30 del código 2
+                tello.send_rc_control(0, 0, 30, 0)
             elif height > ALTURA_ROJO + TOLERANCIA_ALT:
                 tello.send_rc_control(0, 0, -20, 0)
             else:
                 tello.send_rc_control(0, 0, 0, 0)
-                print("✓ Altura lista. FASE 3: Buscando túnel cuadrado rojo")
+                print("✓ Altura lista. FASE 3: Buscando gate rojo")
                 fase = 3
 
         # --------------------------------------------------
-        # FASE 3: BÚSQUEDA GIRATORIA + CENTRADO X e Y
+        # FASE 3: BÚSQUEDA + CENTRADO
         # --------------------------------------------------
         elif fase == 3:
-            if pos_tunel:
+            if pos_gate:
                 frames_sin_tunel = 0
-                cx, cy = pos_tunel
+                cx, cy = pos_gate
                 error_x = cx - centro_x
                 error_y = cy - centro_y
 
-                cv2.line(frame_display, (centro_x, 0), (centro_x, h), (255, 255, 0), 1)
-                cv2.line(frame_display, (0, centro_y), (w, centro_y), (255, 255, 0), 1)
+                cv2.line(frame_display, (centro_x, 0), (centro_x, h), (255,255,0), 1)
+                cv2.line(frame_display, (0, centro_y), (w, centro_y), (255,255,0), 1)
 
                 if abs(error_x) > TOLERANCIA_X:
-                    vel_lat = 15 if error_x > 0 else -15  # ← vel 15 del código 2
-                    tello.send_rc_control(vel_lat, 0, 0, 0)
-                    cv2.putText(frame_display,
-                                f"Centrando X... err={error_x}px",
-                                (20, 70), 2, 0.65, (0, 165, 255), 2)
-                elif abs(error_y) > TOLERANCIA_Y:
-                    vel_vert = -15 if error_y > 0 else 15
-                    tello.send_rc_control(0, 0, vel_vert, 0)
-                    cv2.putText(frame_display,
-                                f"Ajustando Y... err={error_y}px",
-                                (20, 70), 2, 0.65, (255, 165, 0), 2)
-                else:
-                    tello.send_rc_control(0, 0, 0, 0)
-                    print("✓ CENTRADO COMPLETO (X e Y) — FASE 4: Cruzar túnel")
-                    fase = 4
-
-            else:
-                # No detecta → girar a buscar (vel 30 del código 2)
-                frames_sin_tunel += 1
-                tello.send_rc_control(0, 0, 0, 30)  # ← yaw 30 del código 2
-
-                if frames_sin_tunel % FRAMES_SIN_TUNEL_MAX == 0:
-                    giros_realizados += 1
-                    print(f"  Buscando túnel... giro {giros_realizados}/{MAX_GIROS}")
-                    if giros_realizados == MAX_GIROS // 2:
-                        sentido_giro *= -1
-                        print("  Cambiando sentido de búsqueda")
-                    if giros_realizados >= MAX_GIROS:
-                        print("⚠ Túnel no encontrado. Aterrizando.")
-                        fase = 5
-
-                cv2.putText(frame_display, "Buscando cuadrado rojo...",
-                            (20, 70), 2, 0.65, (0, 0, 255), 2)
-
-        # --------------------------------------------------
-        # FASE 4: CRUZAR TÚNEL (300cm del código 2)
-        # --------------------------------------------------
-        elif fase == 4:
-            print("FASE 4: Cruzando túnel pequeño (300cm)...")
-            tello.send_rc_control(0, 0, 0, 0)
-            time.sleep(0.3)
-            tello.move_forward(300)   # ← 300cm del código 2
-            print("✓ Túnel cruzado. FASE 5: Aterrizaje")
-            fase = 5
-
-        # --------------------------------------------------
-        # FASE 5: ATERRIZAJE SUAVE (gradual, no de golpe)
-        # --------------------------------------------------
-        elif fase == 5:
-            tello.send_rc_control(0, 0, 0, 0)
-            time.sleep(0.3)
-            aterrizaje_suave(tello)
-            break
-
-        # --------------------------------------------------
-        # HUD + DIBUJO + GRABACIÓN
-        # --------------------------------------------------
-        if frame_display is not None:
-            if pos_tunel and contorno_tunel is not None:
-                cv2.drawContours(frame_display, [contorno_tunel], -1, (0, 0, 255), 3)
-                cv2.circle(frame_display, pos_tunel, 8, (0, 255, 255), -1)
-                cv2.putText(frame_display, f"Area:{int(area_tunel)}",
-                            (pos_tunel[0]+15, pos_tunel[1]),
-                            2, 0.55, (0, 0, 255), 1)
-                cv2.putText(frame_display, "TUNEL ROJO OK",
-                            (pos_tunel[0]-40, pos_tunel[1]-20),
-                            2, 0.6, (0, 255, 0), 2)
-
-            cv2.drawMarker(frame_display, (centro_x, centro_y),
-                           (255, 255, 0), cv2.MARKER_CROSS, 25, 2)
-
-            cv2.putText(frame_display,
-                        f"FASE:{fase} | ALT:{height}cm | BAT:{tello.get_battery()}%",
-                        (20, 40), 2, 0.7, (0, 255, 0), 2)
-
-            cv2.putText(frame_display, "Q=EMERGENCIA | SPACE=ATERRIZAR",
-                        (20, h - 20), 2, 0.5, (0, 255, 255), 1)
-
-            if height >= EMERGENCY_CEIL - 20:
-                cv2.putText(frame_display,
-                            f"CERCA DEL TECHO: {height}cm/{EMERGENCY_CEIL}cm",
-                            (20, h - 50), 2, 0.6, (0, 0, 255), 2)
-
-            out.write(frame_display)
-            cv2.imshow("TMR - TUNEL PEQUENO ROJO", frame_display)
-
-except Exception as e:
-    print(f"ERROR CRÍTICO: {e}")
-    aterrizaje_suave(tello)
-
-finally:
-    print(f"Guardando: {video_name}")
-    out.release()
-    tello.streamoff()
-    cv2.destroyAllWindows()
+                    vel_lat = 15 if error_x > 0 else -
