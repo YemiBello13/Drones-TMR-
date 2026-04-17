@@ -6,21 +6,58 @@ import os
 from control.drone_control import Drone
 
 # ===== CONFIG =====
-TARGET_HEIGHT  = 190
-MAX_HEIGHT     = 200
+TARGET_HEIGHT  = 200
+MAX_HEIGHT     = 300
 TOLERANCE      = 8
 DIST_FACTOR    = 1.0
-MARKER_SIZE    = 0.20
-TARGET_DIST    = 120
+MARKER_SIZE    = 0.125
+TARGET_DIST    = 150
 
 TOL_X_CM  = 5
 TOL_Y_PX  = 300
+
+# Altura durante centrado
+TARGET_HEIGHT_CENTRADO = 190
+MAX_HEIGHT_CENTRADO    = 230
+
+# Desplazamiento post-centrado
+DESP_LATERAL_CM  = 50
+DESP_VERTICAL_CM = 40
+VEL_DESP         = 15
+
+# Aproximación al pizarrón
+VEL_APROX    = 10
+MARGEN_APROX = 15
+
+# Trazo
+VEL_LATERAL   = 25
+FB_CONTACTO   = 8
+LONG_LINEA_CM = 250
+
+# Búsqueda lateral
+VEL_BUSQUEDA     = 20
+TIMEOUT_BUSQUEDA = 10.0
 
 # ===== INIT =====
 drone = Drone()
 drone.connect()
 tello = drone.tello
 
+# ===== MEDIR SENSORES ANTES DE ENCENDER CAMARA =====
+print("Midiendo sensores iniciales...")
+time.sleep(2.0)
+lecturas_altura = []
+t0 = time.time()
+while len(lecturas_altura) < 10 and time.time() - t0 < 5.0:
+    h_raw = tello.get_height()
+    if 0 <= h_raw <= 30:
+        lecturas_altura.append(h_raw)
+    time.sleep(0.2)
+altura_inicial = int(np.median(lecturas_altura)) if lecturas_altura else 0
+yaw_inicial    = tello.get_yaw()
+print(f"Altura base: {altura_inicial}cm | Yaw base: {yaw_inicial}°")
+
+# ===== CAMARA =====
 tello.streamon()
 time.sleep(2)
 frame_read = tello.get_frame_read()
@@ -62,14 +99,11 @@ obj_points    = np.array([
 # ===== ESTADO =====
 last_err_x      = 0
 last_err_y      = 0
-fase            = 1
+fase            = 0
 dist_al_centrar = 0.0
+ang_al_centrar  = 0.0
+lat_al_centrar  = 0.0
 centrado_listo  = False
-medidas_x       = []
-medidas_y       = []
-medidas_ang     = []
-medidas_lat     = []
-avg_x = avg_y = avg_ang = avg_lat = 0.0
 
 _ultimo_print = 0.0
 def print_throttle(msg):
@@ -94,7 +128,6 @@ def cleanup():
         pass
 
 def safe_land():
-    """Aterriza ignorando errores si el dron ya está en el suelo."""
     drone.send_control(0, 0, 0, 0)
     time.sleep(0.2)
     try:
@@ -102,14 +135,31 @@ def safe_land():
     except Exception as e:
         print(f"Land ignorado: {e}")
 
-def check_q():
+def emergency_stop():
+    print("EMERGENCIA — motores cortados")
+    try:
+        tello.emergency()
+    except:
+        pass
+    cleanup()
+    exit()
+
+def check_keys():
+    if keyboard.is_pressed('space'):
+        emergency_stop()
     if keyboard.is_pressed('q'):
         print("Q presionada — aterrizando")
         drone.send_control(0, 0, 0, 0)
         time.sleep(0.2)
-        if fase >= 5:
-            print("Fase avanzada — retrocediendo antes de aterrizar")
-            mover_con_altura(0, -20, 0, 3.5)
+        if fase >= 8:
+            print("Retrocediendo antes de aterrizar")
+            t0 = time.time()
+            while time.time() - t0 < 3.5:
+                if keyboard.is_pressed('space'):
+                    emergency_stop()
+                drone.send_control(0, -20, ud_seguro(), 0)
+                time.sleep(0.1)
+            drone.send_control(0, 0, 0, 0)
         safe_land()
         cleanup()
         exit()
@@ -122,21 +172,42 @@ def ud_seguro():
         return 15
     return 0
 
+def ud_centrado():
+    alt = tello.get_height()
+    if alt >= MAX_HEIGHT_CENTRADO:
+        return -20
+    if alt < TARGET_HEIGHT_CENTRADO - TOLERANCE:
+        return 15
+    return 0
+
 def sleep_con_altura(segundos, paso=0.1):
     t0 = time.time()
     while time.time() - t0 < segundos:
-        check_q()
-        drone.send_control(0, 0, ud_seguro(), 0)
+        check_keys()
+        drone.send_control(0, 0, ud_centrado(), 0)
         time.sleep(paso)
 
-def mover_con_altura(lr, fb, yaw, segundos, paso=0.1):
+def rotar_grados(grados, velocidad=30, timeout=5.0):
+    yaw_antes = tello.get_yaw()
+    objetivo  = yaw_antes + grados
+    if objetivo > 180:  objetivo -= 360
+    if objetivo < -180: objetivo += 360
     t0 = time.time()
-    while time.time() - t0 < segundos:
-        check_q()
-        drone.send_control(lr, fb, ud_seguro(), yaw)
-        time.sleep(paso)
+    print(f"Rotando {grados}° | yaw_antes:{yaw_antes}° objetivo:{objetivo}°")
+    while time.time() - t0 < timeout:
+        check_keys()
+        yaw_actual = tello.get_yaw()
+        err = objetivo - yaw_actual
+        if err > 180:  err -= 360
+        if err < -180: err += 360
+        if abs(err) < 5:
+            break
+        corr = int(np.clip(err * 0.6, -velocidad, velocidad))
+        drone.send_control(0, 0, ud_seguro(), corr)
+        time.sleep(0.1)
     drone.send_control(0, 0, 0, 0)
-    sleep_con_altura(0.5)
+    time.sleep(0.5)
+    print(f"Rotación completada | yaw_final:{tello.get_yaw()}°")
 
 def dibujar_flecha(display, direccion, color=(0, 200, 255)):
     cx, cy = w // 2, h // 2
@@ -159,13 +230,16 @@ def dibujar_flecha(display, direccion, color=(0, 200, 255)):
 
 
 # ===== TAKEOFF =====
-print("Despegando")
+fase = 0
+print("Despegando — avanzando lentamente para estabilizar...")
 drone.takeoff()
-time.sleep(2)
+time.sleep(1.5)
 
-# ===== ALTURA INICIAL =====
+yaw_despegue = tello.get_yaw()
+print(f"Yaw post-despegue: {yaw_despegue}°")
+
 while True:
-    check_q()
+    check_keys()
     height = tello.get_height()
     print(f"Altura: {height}")
     if height >= MAX_HEIGHT:
@@ -173,23 +247,32 @@ while True:
         time.sleep(0.1)
         continue
     if height < TARGET_HEIGHT - TOLERANCE:
-        drone.send_control(0, 0, 20, 0)
+        drone.send_control(0, 15, 20, 0)
     else:
         drone.send_control(0, 0, 0, 0)
         break
     time.sleep(0.1)
 
-print("Altura alcanzada, iniciando visión...")
+print("Altura alcanzada — rotando 90° a la derecha...")
+
+# ===== ROTAR 90° A LA DERECHA =====
+fase = 1
+rotar_grados(90, velocidad=30)
+yaw_tras_rotar = tello.get_yaw()
+print(f"Yaw tras rotación: {yaw_tras_rotar}°")
+time.sleep(0.5)
+
+# ===== BUSCAR ARUCO AVANZANDO A LA IZQUIERDA =====
+fase = 2
+print(f"Buscando aruco | timeout:{TIMEOUT_BUSQUEDA}s...")
+
 cv2.namedWindow("Tello Vision", cv2.WINDOW_NORMAL)
 cv2.resizeWindow("Tello Vision", 960, 720)
 
-# Timestamp para detectar cuánto tiempo llevamos sin ver el aruco
-t_sin_aruco = time.time()
-MAX_SIN_ARUCO = 30.0  # segundos máximo buscando antes de aterrizar
+t_busqueda = time.time()
 
-# ===== LOOP PRINCIPAL =====
 while True:
-    check_q()
+    check_keys()
 
     frame = frame_read.frame
     if frame is None:
@@ -199,30 +282,73 @@ while True:
     gray    = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     corners, ids, _ = detector.detectMarkers(gray)
 
-    height = tello.get_height()
-    if height >= MAX_HEIGHT:
+    ud_loop   = ud_seguro()
+    yaw_actual = tello.get_yaw()
+    err_yaw    = yaw_tras_rotar - yaw_actual
+    if err_yaw > 180:  err_yaw -= 360
+    if err_yaw < -180: err_yaw += 360
+    corr_yaw_busqueda = int(np.clip(err_yaw * 0.4, -15, 15))
+
+    tiempo_buscando = time.time() - t_busqueda
+
+    if ids is not None and len(corners) > 0:
+        drone.send_control(0, 0, 0, 0)
+        print(f"Aruco detectado tras {tiempo_buscando:.1f}s")
+        time.sleep(0.3)
+        break
+
+    if tiempo_buscando > TIMEOUT_BUSQUEDA:
+        print(f"Timeout búsqueda ({TIMEOUT_BUSQUEDA}s) — aterrizando")
+        safe_land()
+        cleanup()
+        exit()
+
+    seg_restantes = int(TIMEOUT_BUSQUEDA - tiempo_buscando)
+    cv2.putText(display, f"Buscando izquierda | {seg_restantes}s",
+                (20, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 200, 255), 2)
+    drone.send_control(-VEL_BUSQUEDA, 0, ud_loop, corr_yaw_busqueda)
+
+    out.write(display)
+    cv2.imshow("Tello Vision", display)
+    cv2.waitKey(1)
+    time.sleep(0.05)
+
+
+# ===== ACERCARSE A 150CM Y HACER LECTURA UNICA =====
+fase = 3
+print("Acercándose a 150cm para lectura única...")
+t_sin_aruco    = time.time()
+lectura_hecha  = False
+
+while not lectura_hecha:
+    check_keys()
+
+    frame = frame_read.frame
+    if frame is None:
+        continue
+
+    display = frame.copy()
+    gray    = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    corners, ids, _ = detector.detectMarkers(gray)
+
+    height  = tello.get_height()
+    if height >= MAX_HEIGHT_CENTRADO:
         drone.send_control(0, 0, -20, 0)
-        cv2.putText(display, f"!! ALTURA MAX {height} cm !!",
-                    (20, 120), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 0, 255), 3)
-        out.write(display)
         cv2.imshow("Tello Vision", display)
         cv2.waitKey(1)
         time.sleep(0.05)
         continue
 
-    ud_loop = ud_seguro()
+    ud_loop = ud_centrado()
 
     cv2.line(display, (w//2 - 25, h//2), (w//2 + 25, h//2), (255, 0, 0), 1)
     cv2.line(display, (w//2, h//2 - 25), (w//2, h//2 + 25), (255, 0, 0), 1)
-    cv2.line(display, (w//2 - 25, h//2 - TOL_Y_PX), (w//2 + 25, h//2 - TOL_Y_PX), (0, 100, 255), 1)
-    cv2.line(display, (w//2 - 25, h//2 + TOL_Y_PX), (w//2 + 25, h//2 + TOL_Y_PX), (0, 100, 255), 1)
 
     if ids is not None and len(corners) > 0:
-        t_sin_aruco = time.time()  # resetear timer al detectar
+        t_sin_aruco = time.time()
 
         for i, corner in enumerate(corners):
             img_points = corner[0].astype(np.float32)
-
             success, rvec, tvec = cv2.solvePnP(
                 obj_points, img_points, camera_matrix, dist_coeffs
             )
@@ -235,243 +361,156 @@ while True:
             cx    = int(img_points[:, 0].mean())
             cy    = int(img_points[:, 1].mean())
             err_x = cx - (w // 2)
-            err_y = cy - (h // 2)
 
             last_err_x = err_x
-            last_err_y = err_y
 
-            rmat, _  = cv2.Rodrigues(rvec)
-            angle_y  = np.degrees(np.arctan2(rmat[0][2], rmat[2][2]))
-
-            if angle_y > 90:
-                angle_y = angle_y - 180
-            elif angle_y < -90:
-                angle_y = angle_y + 180
+            rmat, _ = cv2.Rodrigues(rvec)
+            angle_y = np.degrees(np.arctan2(rmat[0][2], rmat[2][2]))
+            if angle_y > 90:  angle_y -= 180
+            if angle_y < -90: angle_y += 180
 
             cv2.polylines(display, [img_points.astype(int)], True, (0, 255, 0), 2)
             cv2.circle(display, (cx, cy), 5, (0, 0, 255), -1)
-            cv2.putText(display, f"{distance:.1f} cm",
-                        (cx - 40, max(20, cy - 50)),
-                        cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 0), 2)
-            cv2.putText(display, f"lat:{lateral_real_cm:.1f}cm ang:{angle_y:.1f}",
-                        (cx - 40, max(40, cy - 30)),
-                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 1)
+            cv2.putText(display, f"{distance:.1f}cm lat:{lateral_real_cm:.1f} ang:{angle_y:.1f}",
+                        (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 0), 2)
 
-            acciones = []
-            flechas  = []
             err_dist = distance - TARGET_DIST
 
-            if err_dist > 15:
-                acciones.append(f"Acercar {err_dist:.0f}cm")
-                flechas.append('↑')
-            elif err_dist < -15:
-                acciones.append(f"Alejar {abs(err_dist):.0f}cm")
-                flechas.append('↓')
-            if lateral_real_cm > TOL_X_CM:
-                acciones.append(f"Der {lateral_real_cm:.1f}cm")
-                flechas.append('→')
-            elif lateral_real_cm < -TOL_X_CM:
-                acciones.append(f"Izq {abs(lateral_real_cm):.1f}cm")
-                flechas.append('←')
-            if err_y > TOL_Y_PX:
-                acciones.append(f"Bajar {err_y}px")
-                flechas.append('↓')
-            elif err_y < -TOL_Y_PX:
-                acciones.append(f"Subir {abs(err_y)}px")
-                flechas.append('↑')
-            if angle_y > 8:
-                acciones.append(f"Girar der {angle_y:.1f}")
-                flechas.append('↻')
-            elif angle_y < -8:
-                acciones.append(f"Girar izq {abs(angle_y):.1f}")
-                flechas.append('↺')
+            if abs(err_dist) < 15:
+                # Llegó a 150cm — guardar lectura y hacer corrección única
+                dist_al_centrar = distance
+                lat_al_centrar  = lateral_real_cm
+                ang_al_centrar  = angle_y
+                print(f"Lectura única — dist:{dist_al_centrar:.1f}cm lat:{lat_al_centrar:.1f}cm ang:{ang_al_centrar:.1f}°")
 
-            for f in flechas:
-                dibujar_flecha(display, f)
+                drone.send_control(0, 0, 0, 0)
+                time.sleep(0.5)
 
-            estado       = "CENTRADO OK" if not acciones else "  ".join(acciones)
-            color_estado = (0, 255, 0)   if not acciones else (0, 200, 255)
-            cv2.putText(display, estado, (10, h - 20),
-                        cv2.FONT_HERSHEY_SIMPLEX, 0.6, color_estado, 2)
-            cv2.putText(display,
-                        f"F{fase} | Alt:{height} | d:{distance:.0f} | lat:{lateral_real_cm:.1f} | ey:{err_y} | ang:{angle_y:.1f}",
-                        (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.50, (255, 255, 0), 2)
-
-            print_throttle(f"Dist:{distance:.1f} Lat:{lateral_real_cm:.1f} Fase:{fase} "
-                           f"Alt:{height} ey:{err_y} ang:{angle_y:.1f} | "
-                           f"{'  '.join(flechas) if flechas else 'OK'}")
-
-            # ── FASE 1: avanzar hasta 180cm, luego corregir ──────────────
-            if fase == 1:
-                DIST_PREVIA = 180
-                if distance > DIST_PREVIA:
-                    fb = int(np.clip(0.25 * err_dist, -20, 20))
-                    drone.send_control(0, fb, ud_loop, 0)
-                else:
-                    fb      = int(np.clip(0.25 * err_dist,        -20, 20))
-                    yaw_fix = int(np.clip(0.3  * angle_y,         -20, 20))
-                    lr_fix  = int(np.clip(0.3  * lateral_real_cm, -20, 20))
-                    if abs(err_dist) < 15:
-                        drone.send_control(0, 0, 0, 0)
-                        print("Distancia alcanzada — estabilizando...")
-                        fase = 2
-                    else:
-                        drone.send_control(lr_fix, fb, ud_loop, yaw_fix)
-
-            # ── FASE 2: estabilizar ──────────────────────────────────────
-            elif fase == 2:
-                cv2.putText(display, "Estabilizando...",
-                            (20, 70), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 165, 0), 2)
-                out.write(display)
-                cv2.imshow("Tello Vision", display)
-                cv2.waitKey(1)
-                sleep_con_altura(1.5)
-                medidas_x   = []
-                medidas_y   = []
-                medidas_ang = []
-                medidas_lat = []
-                fase = 3
-
-            # ── FASE 3: acumular lecturas ────────────────────────────────
-            elif fase == 3:
-                if len(medidas_x) == 0 or abs(lateral_real_cm - np.mean(medidas_lat)) < 50:
-                    medidas_x.append(err_x)
-                    medidas_y.append(err_y)
-                    medidas_ang.append(angle_y)
-                    medidas_lat.append(lateral_real_cm)
-                else:
-                    print_throttle(f"[RUIDO] lat={lateral_real_cm:.1f} descartado")
-
-                cv2.putText(display, f"Midiendo... {len(medidas_x)}/20",
-                            (20, 70), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 165, 0), 2)
-                drone.send_control(0, 0, ud_loop, 0)
-
-                if len(medidas_x) >= 20:
-                    avg_x   = float(np.median(medidas_x))
-                    avg_y   = float(np.median(medidas_y))
-                    avg_ang = float(np.median(medidas_ang))
-                    avg_lat = float(np.median(medidas_lat))
-                    print(f"Mediana -> lat:{avg_lat:.1f}cm ey:{avg_y:.1f}px ang:{avg_ang:.1f}°")
-                    fase = 4
-
-            # ── FASE 4: verificar centrado ───────────────────────────────
-            elif fase == 4:
-                out.write(display)
-                cv2.imshow("Tello Vision", display)
-                cv2.waitKey(1)
-                if abs(avg_lat) <= TOL_X_CM and abs(avg_ang) <= 15.0:
-                    dist_al_centrar = distance
-                    print(f"Centrado — distancia medida: {dist_al_centrar:.1f}cm")
+                # Corrección de lateral en un solo movimiento
+                if abs(lat_al_centrar) > TOL_X_CM:
+                    vel_lat   = int(np.clip(lat_al_centrar * 0.5, -20, 20))
+                    t_corr_lat = abs(lat_al_centrar) / max(abs(vel_lat), 1) * 0.6
+                    print(f"Corrigiendo lateral {lat_al_centrar:.1f}cm vel:{vel_lat} t:{t_corr_lat:.1f}s")
+                    t0 = time.time()
+                    while time.time() - t0 < t_corr_lat:
+                        check_keys()
+                        drone.send_control(vel_lat, 0, ud_centrado(), 0)
+                        time.sleep(0.1)
                     drone.send_control(0, 0, 0, 0)
-                    time.sleep(0.5)
-                    centrado_listo = True
-                    break   # sale del for
-                else:
-                    print(f"No centrado (lat:{avg_lat:.1f} ang:{avg_ang:.1f}) — reposicionando...")
-                    medidas_x   = []
-                    medidas_y   = []
-                    medidas_ang = []
-                    medidas_lat = []
-                    fase = 1
+                    time.sleep(0.3)
+
+                # Corrección de ángulo en un solo movimiento
+                if abs(ang_al_centrar) > 5:
+                    vel_yaw   = int(np.clip(ang_al_centrar * 0.6, -20, 20))
+                    t_corr_ang = abs(ang_al_centrar) / max(abs(vel_yaw), 1) * 0.5
+                    print(f"Corrigiendo ángulo {ang_al_centrar:.1f}° vel:{vel_yaw} t:{t_corr_ang:.1f}s")
+                    t0 = time.time()
+                    while time.time() - t0 < t_corr_ang:
+                        check_keys()
+                        drone.send_control(0, 0, ud_centrado(), vel_yaw)
+                        time.sleep(0.1)
+                    drone.send_control(0, 0, 0, 0)
+                    time.sleep(0.3)
+
+                print("Corrección única completada")
+                lectura_hecha  = True
+                centrado_listo = True
+                break
+            else:
+                fb = int(np.clip(0.25 * err_dist, -20, 20))
+                drone.send_control(0, fb, ud_loop, 0)
 
     else:
-        # Sin aruco — mantener altura y buscar
-        tiempo_buscando = time.time() - t_sin_aruco
-        if tiempo_buscando > MAX_SIN_ARUCO:
-            print(f"Sin aruco por {MAX_SIN_ARUCO}s — aterrizando por seguridad")
+        tiempo_sin = time.time() - t_sin_aruco
+        if tiempo_sin > 15.0:
+            print("Sin aruco 15s — aterrizando")
             safe_land()
             cleanup()
             exit()
-
         yaw_recovery = 20 if last_err_x >= 0 else -20
-        seg_restantes = int(MAX_SIN_ARUCO - tiempo_buscando)
-        cv2.putText(display,
-                    f"NO ARUCO | {'der' if last_err_x >= 0 else 'izq'} | timeout {seg_restantes}s",
-                    (20, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
-        # Mantener altura activamente mientras busca
         drone.send_control(0, 0, ud_loop, yaw_recovery)
-        print_throttle(f"NO ARUCO | buscando | {seg_restantes}s restantes")
+        print_throttle("NO ARUCO buscando...")
 
     out.write(display)
     cv2.imshow("Tello Vision", display)
-    if cv2.waitKey(1) & 0xFF == ord('q'):
-        check_q()
+    cv2.waitKey(1)
     time.sleep(0.05)
 
-    if centrado_listo:
-        break   # sale del while True
 
-
-# ===== SECUENCIA DE DIBUJO — fuera del loop, sin visión =====
+# ===== SECUENCIA DE DIBUJO =====
 cv2.destroyAllWindows()
-fase = 5
+fase = 7
 
 print("Iniciando secuencia de dibujo...")
 
-# ── FASE 5: bajar 80cm ───────────────────────────────────────────────────
+# ── FASE 7: moverse 50cm derecha y 40cm abajo ────────────────────────────
+print(f"Desplazando {DESP_LATERAL_CM}cm derecha y {DESP_VERTICAL_CM}cm abajo...")
 altura_al_centrar = int(np.median([tello.get_height() for _ in range(5)]))
-time.sleep(0.5)
-TARGET_HEIGHT     = max(altura_al_centrar - 80, 50)
-print(f"Altura al centrar: {altura_al_centrar}cm | Bajando a: {TARGET_HEIGHT}cm")
+time.sleep(0.3)
+TARGET_HEIGHT = max(altura_al_centrar - DESP_VERTICAL_CM, 50)
 
+TIEMPO_DESP = max(DESP_LATERAL_CM, DESP_VERTICAL_CM) / VEL_DESP
 t0 = time.time()
-while time.time() - t0 < 12.0:
-    check_q()
-    alt = tello.get_height()
-    print(f"  Bajando... {alt}cm → objetivo {TARGET_HEIGHT}cm")
-    drone.send_control(0, 0, ud_seguro(), 0)
-    if abs(alt - TARGET_HEIGHT) < 5:
-        print("Altura objetivo alcanzada")
-        break
-    time.sleep(0.2)
+while time.time() - t0 < TIEMPO_DESP:
+    check_keys()
+    alt     = tello.get_height()
+    ud_desp = -15 if alt > TARGET_HEIGHT + 5 else (15 if alt < TARGET_HEIGHT - 5 else 0)
+    drone.send_control(VEL_DESP, 0, ud_desp, 0)
+    time.sleep(0.1)
 drone.send_control(0, 0, 0, 0)
 time.sleep(1.0)
+print(f"Desplazado — altura actual: {tello.get_height()}cm")
 
-# ── FASE 6: avanzar hacia el pizarrón muy lentamente ─────────────────────
-fase = 6
-VEL_AVANCE   = 5
-TIEMPO_TOTAL = (dist_al_centrar - 10) / VEL_AVANCE
-print(f"Avanzando {dist_al_centrar - 10:.1f}cm a vel {VEL_AVANCE} ({TIEMPO_TOTAL:.1f}s)...")
+# ── FASE 8: avanzar al pizarrón ──────────────────────────────────────────
+fase = 8
+dist_avance  = dist_al_centrar + MARGEN_APROX
+TIEMPO_APROX = dist_avance / VEL_APROX
+print(f"Avanzando {dist_avance:.1f}cm a vel {VEL_APROX} ({TIEMPO_APROX:.1f}s)...")
 
 t0 = time.time()
-while time.time() - t0 < TIEMPO_TOTAL:
-    check_q()
-    drone.send_control(0, VEL_AVANCE, ud_seguro(), 0)
+while time.time() - t0 < TIEMPO_APROX:
+    check_keys()
+    drone.send_control(0, VEL_APROX, ud_seguro(), 0)
     time.sleep(0.1)
 drone.send_control(0, 0, 0, 0)
 time.sleep(0.5)
 print("En contacto con pizarron")
 
-# ── FASE 7: trazar línea 220cm a la derecha ───────────────────────────────
-fase = 7
-VEL_LATERAL  = 12
-TIEMPO_LINEA = 220 / VEL_LATERAL
-print(f"Trazando linea 220cm a vel {VEL_LATERAL} ({TIEMPO_LINEA:.1f}s)...")
+# ── FASE 9: trazar línea con corrección de yaw ────────────────────────────
+fase = 9
+TIEMPO_LINEA = LONG_LINEA_CM / VEL_LATERAL
+yaw_linea    = tello.get_yaw()
+print(f"Trazando {LONG_LINEA_CM}cm | vel:{VEL_LATERAL} fb:{FB_CONTACTO} ({TIEMPO_LINEA:.1f}s)...")
 
 t0 = time.time()
 while time.time() - t0 < TIEMPO_LINEA:
-    check_q()
-    drone.send_control(VEL_LATERAL, 0, ud_seguro(), 0)
+    check_keys()
+    yaw_actual = tello.get_yaw()
+    err_yaw    = yaw_linea - yaw_actual
+    if err_yaw > 180:  err_yaw -= 360
+    if err_yaw < -180: err_yaw += 360
+    corr_yaw = int(np.clip(err_yaw * 0.5, -10, 10))
+    drone.send_control(VEL_LATERAL, FB_CONTACTO, ud_seguro(), corr_yaw)
     time.sleep(0.1)
 drone.send_control(0, 0, 0, 0)
 time.sleep(0.5)
 print("Linea trazada")
 
-# ── FASE 8: retroceder ────────────────────────────────────────────────────
-fase = 8
+# ── FASE 10: retroceder ───────────────────────────────────────────────────
+fase = 10
 TARGET_HEIGHT = altura_al_centrar
-print("Retrocediendo 120cm...")
+print("Retrocediendo...")
 
 t0 = time.time()
 while time.time() - t0 < 6.0:
-    check_q()
+    check_keys()
     drone.send_control(0, -20, ud_seguro(), 0)
     time.sleep(0.1)
 drone.send_control(0, 0, 0, 0)
 time.sleep(0.5)
 
-# ── FASE 9: aterrizar ─────────────────────────────────────────────────────
-fase = 9
+# ── FASE 11: aterrizar ────────────────────────────────────────────────────
+fase = 11
 print("Aterrizando...")
 safe_land()
 cleanup()
